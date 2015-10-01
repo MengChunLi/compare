@@ -5,12 +5,12 @@ var actions = require('../actions/AppActionCreator');
 var ListItem = React.createFactory(require('./ListItem.jsx'));
 
 /**
- * 
+ *
  */
 var comp = React.createClass({
 
   /**
-   * 
+   *
    */
   getInitialState: function() {
       return {
@@ -28,21 +28,21 @@ var comp = React.createClass({
   },
 
   /**
-   * 
+   *
    */
   render: function() {
 
     var date = this.state.selectedItem.created ? new Date(this.state.selectedItem.created).toLocaleString() : null;
 
     return (
-      
+
       <form className="item-detail" role="form">
-        
+
         <div className="form-group">
           <label htmlFor="todo-name">Name</label>
-          <input id="todo-name" type="text" 
-                 className="form-control" 
-                 value={this.state.selectedItem.name} 
+          <input id="todo-name" type="text"
+                 className="form-control"
+                 value={this.state.selectedItem.name}
                  onChange={this.handleChange.bind(this, 'name')}
                  placeholder="Enter email" />
         </div>
@@ -56,13 +56,13 @@ var comp = React.createClass({
           <label htmlFor="todo-date">ID</label>
           <p>{this.state.selectedItem.uid}</p>
         </div>
-        
-        <button className="btn btn-default" 
+
+        <button className="btn btn-default"
                 onClick={this.handleClick}>Save</button>
       </form>
 
     );
-  
+
   },
 
   /**
@@ -72,7 +72,7 @@ var comp = React.createClass({
       evt.preventDefault();
       // console.log( '\n\nsave button click: ', this.state.selectedItem.name );
       actions.updateTodo(this.state.selectedItem, this.state.selectedItem.name);
-  },  
+  },
 
 
   /**

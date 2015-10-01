@@ -1,0 +1,236 @@
+.list-box{
+	width: 100%;
+	position: relative;
+	display: table;
+	text-decoration: none;
+	border: 1px solid @color-gray;
+	color: @color-black;
+	background-color: #fff;
+	margin-bottom: 10px;
+	.box-shadow(0 3px 0px rgba(0,0,0,0.2));
+	.tag-box{
+		cursor: pointer;
+	}
+	&.hover{
+		border: 1px solid @color-logo-green;
+		.prod-img{
+			img{
+				.scale(@ratio: 1.1);
+			}
+			.prod-img-mask{
+				.opacity(1);
+				span{
+					.opacity(1);
+					.translate(@x: 0;@y: 0);
+				}
+				.icon-cricle-arrow{
+					.translate(@x: 0;@y: 0);
+					.opacity(1);
+				}
+			}
+		}
+		.list-arrow{
+			&:extend(.icon-100-0);
+		}
+		.recent-start-day{
+			background-color: @color-light-green;
+		}
+	}
+	a{
+		text-decoration: none;
+		&:hover{
+			text-decoration: none;
+		}
+	}
+	.grid-index{
+		z-index: 2;
+		position: absolute;
+		top: 5px;
+		left: 5px;
+	}
+	.prod-right-box{
+		float: right;
+		width: 65%;
+		padding-left: 10px;
+	}
+	.prod-left-box{
+		position: relative;
+		float: left;
+		width: 35%;
+	}
+	.prod-img{
+		height: 125px;
+		img{
+			.transition(all 0.2s linear);
+		}
+		.onError{
+			width: 172px;
+		}
+		.prod-img-mask{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 125px;
+			overflow: hidden;
+			color: #fff;
+			text-align: center;
+			z-index: 3;
+			background-color: rgba(205, 106, 17, 0.7);
+			.transition(all 0.3s ease-in-out);
+			.opacity(0);
+			&.full{
+				background-color: rgba(153, 153, 153, 0.7);
+				.icon-cricle-arrow{
+					&:extend(.icon-0-50);
+				}
+			}
+			span{
+				display: inline-block;
+				font-size: 28px;
+				line-height: 125px;
+				vertical-align: middle;
+				margin-right: 5px;
+				text-shadow: 0 0 2px rgba(188,188,188,2);
+				.translate(@x: 0;@y: -100px);
+				.transition(all 0.3s ease-in-out);
+				.opacity(0);
+			}
+			.icon-cricle-arrow{
+				display: inline-block;
+				line-height: 125px;
+				vertical-align: middle;
+				background-color: #fff;
+				border-radius: 100px;
+				width: 30px;
+				height: 30px;
+				text-shadow:0 0 2px rgba(209, 190, 177, 1);
+				&:extend(.sprites_arrowinpic);
+				&:extend(.icon-50-50);
+				.translate(@x: 0;@y: 100px);
+				.transition(all 0.3s ease-in-out);
+				.opacity(0);
+			}
+		}
+	}
+	.travel-days{
+		color: @color-black;
+		font-size: 24px;
+		font-style: italic;
+		margin-bottom: 10px;
+	}
+	.left-side{
+		display: table-cell;
+		vertical-align: middle;
+		width: 75%;
+		padding: 10px 0 10px 10px;
+	}
+	.right-side{
+		position: relative;
+		padding-bottom: 30px;
+		width: 25%;
+		text-align: left;
+		display: table-cell;
+		vertical-align: middle;
+		background-color: @color-bg-green;
+		border-left: 1px dashed @color-gray;
+		.co-discount{
+			position: absolute;
+			right: 5px;
+			top: 5px;
+			font-size: 15px;
+			width: 75px;
+			&:extend(.line-box-orange-small);
+		}
+		.price-box{
+			margin-top: 5px;
+		}
+		.text-price{
+			font-size: 24px;
+		}
+		.promoRemark{
+			margin-top: 10px;
+			font-size: 15px;
+		}
+		.text-mini{
+			color: @color-black;
+		}
+		.vend-trip{
+			margin-top: 15px;
+			color: @color-black;
+		}
+		.list-arrow-box{
+			position: absolute;
+			top: 50%;
+			right: 6px;
+		}
+	}
+	.right-side-padding{
+		position: relative;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	.list-arrow{
+		display: inline-block;
+		width: 18px;
+		height: 45px;
+		margin-top: -22px;
+		&:extend(.result_sprites);
+		&:extend(.icon-100-50);
+	}
+	.icon-calendar{
+		margin-top: -2px;
+	}
+	ul.ul-default-cust{
+		font-size: 16px;
+		margin-top: 10px;
+	}
+}
+@media (min-width: 992px) {
+	.list-box{
+		.prod-img{
+			height: 210px;
+			.prod-img-mask{
+				height: 210px;
+				span{
+					font-family: @font-family2;
+					line-height: 210px;
+				}
+				.icon-cricle-arrow{
+					line-height: 210px;
+				}
+			}
+			.onError{
+				width: 250px;
+			}
+		}
+		.left-side{
+			width: 80%;
+			padding: 0;
+		}
+		.prod-right-box{
+			width: 61%;
+		}
+		.prod-left-box{
+			width: 39%;
+		}
+		.right-side{
+			width: 20%;
+		}
+		.travel-days{
+			font-family: @font-family2;
+		}
+		.grid-index{
+			margin-right: 10px;
+		}
+		.start-date-box{
+			position: absolute;
+			bottom: 10px;
+			left: 315px;
+		}
+		ul.ul-default-cust{
+			font-size: 15px;
+			font-family: @font-family2;
+		}
+	}
+}

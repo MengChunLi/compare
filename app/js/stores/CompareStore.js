@@ -20,28 +20,28 @@ var EventEmitter = require('events').EventEmitter; // 取得一個 pub/sub 廣�
 // 從此取得廣播的能力
 // 由於將來會返還 TodoStore 出去，因此下面寫的會全變為 public methods
 var Store = new EventEmitter();
+//{"todos":[{"name":"thth","uid":"41bd_041g","created":1443621200705}],"selectedItem":{"name":"thth","uid":"41bd_041g","created":1443621200705}}
+var prods = [
+  {prodNm: "*【五星保證‧第2人减2千】楓迷北海道‧黑岳雪山紅葉浪漫‧星野渡假村5 天(千千)", price: 35999},
+  {prodNm: "【升等五星希爾頓】浪漫秋舞北海道、單車楓情、熊牧場、支芴湖、溫泉螃蟹美饌5日", price: 33900} 
+];
 
-// 假資料
-var arrTodos = null;
+var compareData = null;
 
 // 目前選取的 todo 項目
-var selectedItem = null;
-
-// header 裏隨打即查輸入的文字
-var searchFilter = '';
+var checkedItem = null;
 
 // app 第一次啟動時，存入一包 mock data 到 localStorage 供測試
 var db = window.localStorage;
-if( db.hasOwnProperty('mydb') == false ){
+if( db.hasOwnProperty('compareDB') == false ){
     // console.log( '\n無歷史資料，存入 mock data' );
-    db.setItem('mydb', JSON.stringify({todos: [], selectedItem: null}) )
+    db.setItem('compareDB', JSON.stringify({lists: [], checkedItem: null}) )
 }
-
+//[{"pfProdNo":"FRN0000013233","imgUrl":"http://www.eztravel.com.tw/img/FRN/FRN0000013233.gif","prodUrl":"http://www.eztravel.com.tw/ezec/pkgfrn/grp_begdate.jsp?prod_no=FRN0000013233","saleDt":"20151006"},{"pfProdNo":"SPK05GEA0815AA","vendNo":"VDR0000007986","imgUrl":"http://www.eztravel.com.tw/img/VDR/kyoto13.jpg","prodUrl":"/pkgfrn/introduction/VDR0000007986/SPK05GEA0815AA","saleDt":"20151008"}]
 // 接著一律從 db 讀取歷史資料
-var o = JSON.parse(db.getItem('mydb'));
-arrTodos = o.todos ? o.todos : [] ;
-selectedItem = o.selectedItem;
-
+var c = JSON.parse(db.getItem('compareDB'));
+compareData = c.lists ? c.lists : [] ;
+checkedItem = c.checkedItem;
 
 //========================================================================
 //
@@ -58,9 +58,14 @@ $.extend( Store, {
      */
     getAll: function(){
         return {
-            arrTodos: arrTodos,
-            selectedItem: selectedItem,
-            filter: searchFilter
+            prods: prods
+        }
+    },
+
+    getCompare: function(){
+        return {
+            compareData: compareData,
+            checkedItem: checkedItem
         }
     },
 
@@ -89,7 +94,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
          */
         case AppConstants.TODO_CREATE:
 
-            arrTodos.push( action.item );
+            compareData.push( action.item );
 
             // console.log( 'Store 新增: ', arrTodos );
 
@@ -107,7 +112,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
          */
         case AppConstants.TODO_REMOVE:
 
-            arrTodos = arrTodos.filter( function(item){
+            compareData = compareData.filter( function(item){
                 return item != action.item;
             })
 
@@ -185,7 +190,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
  * 將資料保存入 localStorage，下次開啟時取回
  */
 function persist(){
-    db.setItem('mydb', JSON.stringify({todos: arrTodos, selectedItem: selectedItem}) );
+    db.setItem('compareDB', JSON.stringify({lists: compareData, checkedItem: checkedItem}) );
 }
 
 //

@@ -5,13 +5,14 @@
 
 //========================================================================
 //
-// import 
+// import
 
 // var React = require('react');
 var Header = React.createFactory( require('./Header.jsx') );
 var Footer = React.createFactory( require('./Footer.jsx') );
 var InputBox = React.createFactory( require('./InputBox.jsx') );
 var List = React.createFactory( require('./List.jsx') );
+
 var Detail = React.createFactory( require('./Detail.jsx') );
 
 var TodoStore = require('../stores/TodoStore');
@@ -20,20 +21,20 @@ var AppConstants = require('../constants/AppConstants');
 var idResize;
 
 /**
- * 
+ *
  */
 var MainApp = React.createClass({
 
     //========================================================================
     //
     // mount
-    
+
     /**
      * 這是 component API, 在 mount 前會跑一次，取值做為 this.state 的預設值
      */
     getInitialState: function() {
-        var o = this.getTruth(); 
-        o.screenSize = 'tablet'
+        var o = this.getTruth();
+        o.screenSize = 'tablet';
         return o;
     },
 
@@ -50,14 +51,14 @@ var MainApp = React.createClass({
     },
 
     handleResize: function(evt){
-            
+
         clearTimeout( idResize );
 
         idResize = setTimeout(function(){
-        
+
             var body = document.body;
             var size;
-            
+
             // @todo: 改回 1024
             if(body.scrollWidth > 720){
                 size = 'desktop';
@@ -66,12 +67,12 @@ var MainApp = React.createClass({
             }else{
                 size = 'phone';
             }
-            
+
             // console.log( 'resize: ', body.scrollWidth, body.scrollHeight, ' >size: ', size );
 
             this.setState({screenSize: size});
 
-        }.bind(this), 0)
+        }.bind(this), 0);
 
     },
 
@@ -80,7 +81,7 @@ var MainApp = React.createClass({
      */
     componentDidMount: function() {
         //
-    },  
+    },
 
     //========================================================================
     //
@@ -94,7 +95,7 @@ var MainApp = React.createClass({
     },
 
     /**
-     * 
+     *
      */
     componentDidUnmount: function() {
         //
@@ -112,7 +113,7 @@ var MainApp = React.createClass({
     },
 
     /**
-     * 
+     *
      */
     shouldComponentUpdate: function(nextProps, nextState) {
         return true;
@@ -123,7 +124,7 @@ var MainApp = React.createClass({
     },
 
     /**
-     * 
+     *
      */
     componentDidUpdate: function(prevProps, prevState) {
     },
@@ -133,7 +134,7 @@ var MainApp = React.createClass({
     // render
 
     /**
-     * 
+     *
      */
     render: function() {
 
@@ -144,55 +145,56 @@ var MainApp = React.createClass({
 
             // phone
             return (
-                
+
                 <div className="wrapper">
-                    
+
                     <Header truth={this.state} />
-                    
+
                     <div className="main-box">
                         <InputBox truth={this.state} />
                         <List truth={this.state} />
                     </div>
-                    
+
                     <Footer />
-                </div>    
+                </div>
             )
 
         }else if( size == 'tablet'){
 
             // tablet
             return (
-                
+
                 <div className="wrapper">
-                    
+
                     <Header truth={this.state} />
-                    
+
                     <div className="main-box">
                         <InputBox truth={this.state} />
                         <List truth={this.state} />
                     </div>
-                    
+
                     <Footer />
-                </div>    
+                </div>
             )
-        
+
         }else{
-            
+
             // desktop
             return (
-                
+
                 <div className="wrapper">
-                    
+
                     <Header truth={this.state} />
-                    
+
                     <div className="main-box">
                         <InputBox truth={this.state} />
                         <List truth={this.state} />
                         <Detail truth={this.state} />
                     </div>
-                    
+
                     <Footer />
-                </div>    
+
+                </div>
             )
         }
     },

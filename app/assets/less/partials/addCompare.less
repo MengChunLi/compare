@@ -1,0 +1,178 @@
+.add-compare-btn{
+	position: absolute;
+	left: 20px;
+	bottom: 20px;
+	cursor: pointer;
+	label{
+		margin-bottom: 0;
+	}
+	&.btn-intro{
+		position: relative;
+		width: 70%;
+		text-align: center;
+		margin: 10px auto 0 auto;
+		padding-top: 10px;
+		border-top: 1px dashed @color-gray;
+	}
+}
+.listView{
+	.add-compare-btn{
+		width: 100%;
+		border-top: 1px dashed @color-gray;
+		bottom: 0;
+		left: 0;
+		text-align: center;
+		padding: 5px 0;
+	}
+}
+.gridView{
+	.add-compare-btn{
+		right: 10px;
+		bottom: 10px;
+		z-index: 4;
+		label{
+			color: white;
+		}
+	}
+}
+.compare-alert-msg{
+	display: none;
+	z-index: 3;
+	position: fixed;
+	bottom: 45px;
+	right: 15px;
+	width: 210px;
+	border-radius: 10px;
+	background-color: @color-bg-red;
+	color: @color-text-red;
+	font-size: 16px;
+	text-align: center;
+	padding: 10px 0;
+	.transition(opacity 0.2s);
+	&.active{
+		display: block;
+	}
+	&.high{
+		bottom: 180px;
+	}
+}
+.compare-temp-box{
+	display: none;
+	z-index: 2;
+	position: fixed;
+	bottom: -120px;
+	right: 15px;
+	width: 210px;
+	background-color: #6EBBDC;
+	border-radius: 10px;
+	padding: 10px 0;
+	.transition(bottom 0.2s);
+	&:after{
+		position: absolute;
+		content: '';
+		display: block;
+		width: 100%;
+		height: 15px;
+		left: 0;
+		bottom: -15px;
+	}
+	.title{
+		margin: 0 10px;
+		color: white;
+		font-size: 16px;
+		text-align: center;
+	}
+	.clean-all{
+		text-decoration: underline;
+	    margin-top: 10px;
+	    width: 100%;
+	    font-size: 14px;
+	    text-align: center;
+	}
+	.mini-images{
+		margin: 10px;
+		.mini-img-box{
+			position: relative;
+			display: inline-block;
+			width: 33.333%;
+			height: 40px;
+			text-align: center;
+			button.delete-btn{
+				display: none;
+				position: absolute;
+				top: -5px;
+				right: 0;
+				border-radius: 50%;
+				background-color: @color-black;
+				width: 20px;
+				height: 20px;
+				color: white;
+				border: 0;
+				.opacity(0.7);
+				span{
+					display: inline-block;
+					margin-top: -5px;
+				    vertical-align: middle;
+				    font-size: 14px;
+				}
+				&:hover{
+					.opacity(0.5);
+				}
+			}
+			.mini-img{
+				&.default{
+					cursor: default;
+				}
+				img{
+					border: 1px solid white;
+					width: 86%;
+					height: 40px;
+				}
+			}
+			&:hover{
+				button.delete-btn{
+					display: block;
+				}
+			}
+		}
+	}
+	.btn-compare{
+		display: block;
+		width: 100px;
+		margin: auto;
+		text-align: center;
+		font-size: 18px;
+		padding: 3px 0;
+		&:hover, &:active{
+			text-decoration: none;
+		}
+	}
+	&.hover{
+		bottom: 15px;
+	}
+	&.active{
+		display: block;
+	}
+}
+@media (min-width: 992px) {
+	.add-compare-btn{
+		&.btn-intro{
+			padding-top: 0;
+			margin: 5px auto 0 auto;
+			border-top: none;
+		}
+	}
+	.compare-alert-msg{
+		font-family: @font-family2;
+		font-size: 15px;
+	}
+	.compare-temp-box{
+		.title{
+			font-family: @font-family2;
+			font-size: 15px;
+		}
+		.btn-compare{
+			font-family: @font-family2;
+		}
+	}
+}
