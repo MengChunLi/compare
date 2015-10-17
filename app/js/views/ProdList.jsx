@@ -14,19 +14,26 @@ var comp = React.createClass({
    // console.log(compareData);
    // },
   render: function() {
-
+    var selectedItem = this.props.truth.selectedItem;
    //console.log(this.props.prods);
     var arr = this.props.prods
-
+    
     // 再將合格的項目轉成 <ListItem> 元件供顯示
     .map(function(item){
-
-        //
+       //console.log('this.props.truth.selectedItem:');
+        var isSelected = false;
+        // 判斷prod中哪些為selectedItem
+        for (var i = selectedItem.length - 1; i >= 0; i--) {
+          if(selectedItem[i].uid == item.uid){
+            isSelected = true;
+          }
+        };
+        
         return <ProdListItem
 
                 prod={item}
-                price={item.price}
-                prodNm = {item.prodNm} />
+                selected = {isSelected}
+                key={item.uid} />
 
     }, this)
 

@@ -8,7 +8,7 @@
 
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var AppConstants = require('../constants/AppConstants');
-var actions = require('../actions/AppActionCreator');
+var actions = require('../actions/CompareAction');
 
 var EventEmitter = require('events').EventEmitter; // 取得一個 pub/sub 廣播器
 
@@ -21,27 +21,23 @@ var EventEmitter = require('events').EventEmitter; // 取得一個 pub/sub 廣�
 // 由於將來會返還 TodoStore 出去，因此下面寫的會全變為 public methods
 var Store = new EventEmitter();
 //{"todos":[{"name":"thth","uid":"41bd_041g","created":1443621200705}],"selectedItem":{"name":"thth","uid":"41bd_041g","created":1443621200705}}
-var prods = [
-  {prodNm: "*【五星保證‧第2人减2千】楓迷北海道‧黑岳雪山紅葉浪漫‧星野渡假村5 天(千千)", price: 35999},
-  {prodNm: "【升等五星希爾頓】浪漫秋舞北海道、單車楓情、熊牧場、支芴湖、溫泉螃蟹美饌5日", price: 33900} 
-];
 
-var compareData = null;
+//var compareData = null;
 
-// 目前選取的 todo 項目
-var checkedItem = null;
+// // 目前選取的 todo 項目
+var selectedItem = null;
 
 // app 第一次啟動時，存入一包 mock data 到 localStorage 供測試
 var db = window.localStorage;
 if( db.hasOwnProperty('compareDB') == false ){
     // console.log( '\n無歷史資料，存入 mock data' );
-    db.setItem('compareDB', JSON.stringify({lists: [], checkedItem: null}) )
+    db.setItem('compareDB', JSON.stringify({selectedItem: []}) )
 }
 //[{"pfProdNo":"FRN0000013233","imgUrl":"http://www.eztravel.com.tw/img/FRN/FRN0000013233.gif","prodUrl":"http://www.eztravel.com.tw/ezec/pkgfrn/grp_begdate.jsp?prod_no=FRN0000013233","saleDt":"20151006"},{"pfProdNo":"SPK05GEA0815AA","vendNo":"VDR0000007986","imgUrl":"http://www.eztravel.com.tw/img/VDR/kyoto13.jpg","prodUrl":"/pkgfrn/introduction/VDR0000007986/SPK05GEA0815AA","saleDt":"20151008"}]
 // 接著一律從 db 讀取歷史資料
 var c = JSON.parse(db.getItem('compareDB'));
-compareData = c.lists ? c.lists : [] ;
-checkedItem = c.checkedItem;
+selectedItem = c.selectedItem ? c.selectedItem : [] ;
+//selectedItem = c.selectedItem;
 
 //========================================================================
 //
@@ -58,14 +54,8 @@ $.extend( Store, {
      */
     getAll: function(){
         return {
-            prods: prods
-        }
-    },
-
-    getCompare: function(){
-        return {
-            compareData: compareData,
-            checkedItem: checkedItem
+            //compareData: compareData,
+            selectedItem: selectedItem
         }
     },
 
@@ -92,14 +82,18 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
         /**
          * 
          */
-        case AppConstants.TODO_CREATE:
+        case AppConstants.ITEM_CREATE:
 
-            compareData.push( action.item );
+            selectedItem = selectedItem.filter( function(item){
+                return item != action.item;
+            })
+            
+            selectedItem.push( action.item );
 
-            // console.log( 'Store 新增: ', arrTodos );
+            console.log( 'Store 新增: ', selectedItem );
 
             // 將新增的項目設為 selected，將來在 ui 裏會高亮與自動捲動
-            selectedItem = action.item;
+            //selectedItem = action.item;
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
@@ -110,18 +104,20 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
         /**
          * 
          */
-        case AppConstants.TODO_REMOVE:
+        case AppConstants.ITEM_REMOVE:
 
-            compareData = compareData.filter( function(item){
-                return item != action.item;
+            selectedItem = selectedItem.filter( function(item){
+                //console.log('item: ',item,'action: ',action.item);
+                //console.log(item.uid == action.item.uid)
+                return item.uid != action.item.uid;
             })
 
             // 如果當前選取的 item 被刪掉了，要記錄這個事實
-            if( selectedItem == action.item ){
-                selectedItem = null;
-            }
+            // if( selectedItem == action.item ){
+            //     selectedItem = null;
+            // }
 
-            // console.log( 'Store 刪完: ', arrTodos );
+            console.log( 'Store 刪完: ', selectedItem );
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
@@ -132,47 +128,47 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
         /**
          * 
          */    
-        case AppConstants.TODO_UPDATE:
+        // case AppConstants.TODO_UPDATE:
 
-            console.log( 'Store 更新: ', action.item );
+        //     console.log( 'Store 更新: ', action.item );
             
-            action.item.name = action.newVal;
+        //     action.item.name = action.newVal;
 
-            Store.emit( AppConstants.CHANGE_EVENT );
+        //     Store.emit( AppConstants.CHANGE_EVENT );
 
-            persist();
+        //     persist();
                 
-            break;
+        //     break;
 
-        /**
-         * 
-         */    
-        case AppConstants.TODO_SELECT:
+        // /**
+        //  * 
+        //  */    
+        // case AppConstants.TODO_SELECT:
 
-            // console.log( 'Store 選取: ', action.item );
+        //     // console.log( 'Store 選取: ', action.item );
 
-            // 選取同樣的 item 就不用處理下去了
-            if( selectedItem != action.item ){
-                selectedItem = action.item;
-                Store.emit( AppConstants.CHANGE_EVENT );
-                persist();
-            }
+        //     // 選取同樣的 item 就不用處理下去了
+        //     if( selectedItem != action.item ){
+        //         selectedItem = action.item;
+        //         Store.emit( AppConstants.CHANGE_EVENT );
+        //         persist();
+        //     }
                 
-            break;
+        //     break;
 
-        /**
-         * 
-         */    
-        case AppConstants.TODO_FILTER:
+        // /**
+        //  * 
+        //  */    
+        // case AppConstants.TODO_FILTER:
 
-            // console.log( 'Store 查詢: ', action.val );
+        //     // console.log( 'Store 查詢: ', action.val );
 
-            if( searchFilter != action.val ){
-                searchFilter = action.val
-                Store.emit( AppConstants.CHANGE_EVENT );
-            }
+        //     if( searchFilter != action.val ){
+        //         searchFilter = action.val
+        //         Store.emit( AppConstants.CHANGE_EVENT );
+        //     }
                 
-            break;
+        //     break;
 
         
 
@@ -190,7 +186,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
  * 將資料保存入 localStorage，下次開啟時取回
  */
 function persist(){
-    db.setItem('compareDB', JSON.stringify({lists: compareData, checkedItem: checkedItem}) );
+    db.setItem('compareDB', JSON.stringify({selectedItem: selectedItem}) );
 }
 
 //

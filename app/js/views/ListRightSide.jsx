@@ -21,7 +21,7 @@ var comp = React.createClass({
                     <span className="list-arrow"></span>
                 </div>
             </div>
-            <AddCompare />
+            <AddCompare prod={this.props.prod} selected = {this.props.selected} />
         </div>
       );
     }

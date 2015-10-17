@@ -35,6 +35,10 @@ module.exports = keyMirror({
     
     TODO_FILTER: null,
 
+    ITEM_CREATE: null,
+
+    ITEM_REMOVE: null,
+
   	noop: null
 });
 

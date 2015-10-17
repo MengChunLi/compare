@@ -3,7 +3,7 @@ var comp = React.createClass({
       return (
         <div className="left-side">
             <div className="prod-left-box">
-                <div className="grid-index">1</div>
+                <div className="grid-index">{this.props.prod.uid + 1}</div>
                 <div className="prod-img focuspoint" data-focus-x="0.0" data-focus-y="-0.0">
                     <div className="prod-img-mask"><span>訂購</span><i className="icon-cricle-arrow"></i></div>
                     <img src={this.props.prod.imgUrl} width="300" height="210"/>
