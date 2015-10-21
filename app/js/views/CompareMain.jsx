@@ -81,7 +81,7 @@ var comp = React.createClass({
     //  */
     getInitialState: function() {
         var o = this.getTruth();
-        console.log(o);
+        //console.log(o);
         //o.screenSize = 'tablet';
         return o;
     },
@@ -91,7 +91,7 @@ var comp = React.createClass({
      */
     componentWillMount: function() {
         CompareStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
-
+        
         // 要用 interval 擋一下
         //window.addEventListener('resize', this.handleResize );
 
@@ -128,7 +128,20 @@ var comp = React.createClass({
      * 重要：root view 建立後第一件事，就是偵聽 store 的 change 事件
      */
     componentDidMount: function() {
-        //
+        window.addEventListener("storage", this.handleStorage );
+    },
+
+    /**
+     * 同步瀏覽器中每個分頁的商品比較狀態
+     */
+    handleStorage: function(event){
+        if (event.key === 'compareDB') {
+            //console.log('handleStorage', JSON.parse(event.newValue));
+            //更新Store資料
+            CompareStore.updateStorage(JSON.parse(event.newValue));
+            this._onChange();
+            //this.setState(JSON.parse(event.newValue));
+        }
     },
 
     //========================================================================
@@ -140,6 +153,7 @@ var comp = React.createClass({
      */
     componentWillUnmount: function() {
         CompareStore.removeChangeListener( this._onChange );
+        window.removeEventListener('storage', this.handleStorage );
     },
 
     /**

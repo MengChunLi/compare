@@ -53,10 +53,15 @@ $.extend( Store, {
      * 供外界取得 store 內部資料
      */
     getAll: function(){
+       // selectedItem = window.addEventListener('storage', this.handleStorage );
         return {
             //compareData: compareData,
             selectedItem: selectedItem
         }
+    },
+
+    updateStorage: function(obj){
+        selectedItem = obj.selectedItem;
     },
 
     //
@@ -107,8 +112,8 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
         case AppConstants.ITEM_REMOVE:
 
             selectedItem = selectedItem.filter( function(item){
-                //console.log('item: ',item,'action: ',action.item);
-                //console.log(item.uid == action.item.uid)
+                console.log('item: ',item,'action: ',action.item);
+                //console.log('item:',item, 'action: ', action.item);
                 return item.uid != action.item.uid;
             })
 

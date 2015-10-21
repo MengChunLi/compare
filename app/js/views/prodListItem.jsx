@@ -30,9 +30,9 @@ var comp = React.createClass({
         'list-box': true,
         'selected': false
     });
-
+    
     return (
-
+      
       <div className={classes} >
 
            <ListLeftSide prod={this.props.prod} />

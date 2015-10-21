@@ -15,20 +15,22 @@ var comp = React.createClass({
    // },
   render: function() {
     var selectedItem = this.props.truth.selectedItem;
-   //console.log(this.props.prods);
+    //console.log('selectedItem: ',selectedItem);
+    // 輸出已選擇的項目uid array
+    var uidSelected = [];
+    for (var i = 0; i < selectedItem.length; i++) {
+        uidSelected[i] = selectedItem[i].uid;
+    };
     var arr = this.props.prods
     
-    // 再將合格的項目轉成 <ListItem> 元件供顯示
+    // 將項目轉成 <ListItem> 元件供顯示
     .map(function(item){
-       //console.log('this.props.truth.selectedItem:');
-        var isSelected = false;
-        // 判斷prod中哪些為selectedItem
-        for (var i = selectedItem.length - 1; i >= 0; i--) {
-          if(selectedItem[i].uid == item.uid){
-            isSelected = true;
-          }
-        };
-        
+  
+        console.log('truth: ',this.props.truth.selectedItem);
+        // 確認是否包否為Selected
+        var isSelected = uidSelected.indexOf(item.uid) > -1 ? true : false;
+
+        console.log('isSelected2: ',isSelected);
         return <ProdListItem
 
                 prod={item}
