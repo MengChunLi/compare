@@ -1,7 +1,6 @@
 /**
  *
  */
-var actions = require('../actions/AppActionCreator');
 var ListLeftSide = React.createFactory(require('./ListLeftSide.jsx'));
 var ListRightSide = React.createFactory(require('./ListRightSide.jsx'));
 var cx = React.addons.classSet;
