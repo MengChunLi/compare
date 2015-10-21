@@ -12,6 +12,7 @@ var ProdList = React.createFactory( require('./ProdList.jsx') );
 var CompareBox = React.createFactory( require('./CompareBox.jsx') );
 var CompareStore = require('../stores/CompareStore');
 var AppConstants = require('../constants/AppConstants');
+var actions = require('../actions/CompareAction');
 
 var prods = [
   {
@@ -137,9 +138,10 @@ var comp = React.createClass({
     handleStorage: function(event){
         if (event.key === 'compareDB') {
             //console.log('handleStorage', JSON.parse(event.newValue));
-            //更新Store資料
-            CompareStore.updateStorage(JSON.parse(event.newValue));
-            this._onChange();
+            //透過actions更新Store資料
+            actions.updateStorage( JSON.parse(event.newValue) );
+            //CompareStore.updateStorage(JSON.parse(event.newValue));
+            //this._onChange();
             //this.setState(JSON.parse(event.newValue));
         }
     },

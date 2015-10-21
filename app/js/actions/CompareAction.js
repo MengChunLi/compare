@@ -74,6 +74,18 @@ var CompareAction = {
     /**
      * 
      */
+    updateStorage: function( newVal ) {
+
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.ITEM_UPDATE,
+            newVal: newVal
+        });
+
+    },
+
+    /**
+     * 
+     */
     // doSearch: function( val ) {
 
     //     AppDispatcher.handleViewAction({

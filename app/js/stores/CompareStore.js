@@ -60,10 +60,6 @@ $.extend( Store, {
         }
     },
 
-    updateStorage: function(obj){
-        selectedItem = obj.selectedItem;
-    },
-
     //
     noop: function(){}
 });
@@ -123,6 +119,21 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             // }
 
             console.log( 'Store 刪完: ', selectedItem );
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            persist();
+                
+            break;
+
+        /**
+         * 同步分頁storage更新selectedItem
+         */    
+        case AppConstants.ITEM_UPDATE:
+
+            console.log( 'Store 更新: ', action.newVal );
+            
+            selectedItem = action.newVal.selectedItem;
 
             Store.emit( AppConstants.CHANGE_EVENT );
 
