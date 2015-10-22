@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+    <title><%= title %></title>
+    <% include modules/head.ejs %>
+    <body>
+        <!-- index.html 裏只有這個進入點，剩下 dom 都在 react 裏生成  -->
+        <section id="container"></section>
+        <div id="prodObj" data-prod="<%= prodObj %>"></div>
+        <% include modules/libJs.ejs %>
+        <script src="app/js/result-bundle.js"></script>
+    </body>
+</html>

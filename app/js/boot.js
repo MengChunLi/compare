@@ -16,8 +16,7 @@
 // 要用它建立一個 factory，之後才能產出 instance，下面 createFactory() 就是在建立工廠
 var CompareMain = React.createFactory(require('./views/CompareMain.jsx'));
 $(function(){
-	// 
-	//React.render( MainApp(), document.getElementById('container') );
-	React.render( CompareMain(), document.getElementById('compareMain') );
+
+	React.render( CompareMain(), document.getElementById('container') );
 
 })

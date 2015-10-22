@@ -4,13 +4,17 @@
   "description": "Sample application for meetup",
   "main": "js/app.js",
   "dependencies": {
-    "express": "4.x",
     "debug": "^2.1.0",
+    "ejs": "*",
     "es6-promise": "~0.1.1",
+    "event-stream": "^3.3.2",
+    "express": "4.x",
     "flux": "^2.0.1",
     "gulp-livereload": "^2.1.1",
     "gulp-minify-css": "^0.3.11",
     "gulp-notify": "^2.0.0",
+    "gulp-rename": "^1.2.2",
+    "react": "^0.14.0",
     "shortid": "^2.0.1",
     "vinyl-source-stream": "^1.0.0"
   },
@@ -18,13 +22,13 @@
     "browserify": "^4.2.0",
     "connect": "^2.17.1",
     "gulp": "^3.8.5",
-    "reactify": "^0.13.1",
-    "gulp-less": "^3.0.3"
+    "gulp-less": "^3.0.3",
+    "reactify": "^0.13.1"
   },
   "scripts": {
     "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jeremy Lu",
+  "author": "Molly Li",
   "license": "MIT"
 }

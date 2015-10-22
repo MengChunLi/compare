@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
+var rename     = require('gulp-rename');
+var es         = require('event-stream');
 var minifyCSS = require('gulp-minify-css');
 var livereload = require('gulp-livereload');
 var notify = require('gulp-notify');
@@ -16,16 +18,17 @@ livereload.listen();
 // 路徑變數
 var paths = {
     main: './app/js/boot.js',
+    result: './app/js/result.js',
     css: './app/assets/css/*.css',
     less: './app/assets/less/main.less',
-    destDir: 'build',
-    destCSS: 'build/assets/css'
+    destDir: 'public'
 };
 
 gulp.task('build-less', function () {
   return gulp.src(paths.less)
     .pipe(less())
-    .pipe(gulp.dest(paths.destCSS));
+    //.pipe(source(paths.less))
+    .pipe(gulp.dest(paths.destDir + '/app/css/'));
 });
 
 /**
@@ -35,54 +38,68 @@ gulp.task('bundle-js', function() {
 
     // console.log( '\nbundle-js 跑' );
 
-    return browserify({
-        entries:[ paths.main ]
-    })
+    // we define our input files, which we want to have
+    // bundled:
+    var files = [
+        paths.main, 
+        paths.result
+    ];
+    // map them to our stream function
+    var tasks = files.map(function(entry) {
+        return browserify({
+            entries:[entry]
+        })
 
-    // 最優先編譯 jsx，確保後面其它 transform 運行無誤
-    .transform( 'reactify' )
+        // 最優先編譯 jsx，確保後面其它 transform 運行無誤
+        .transform( 'reactify' )
 
-    // 所有檔案合併為一，並指定要生成 source map
-    .bundle({debug: true})
+        // 所有檔案合併為一，並指定要生成 source map
+        .bundle({debug: true})
 
-    .on('error', function( err ){
-        console.log( '[錯誤]', err );
-        this.end();
-        gulp.src('').pipe( notify('✖ Bunlde Failed ✖') )
-    })
+        .on('error', function( err ){
+            console.log( '[錯誤]', err );
+            this.end();
+            gulp.src('').pipe( notify('✖ Bunlde Failed ✖') )
+        })
 
-    // 利用 vinyl-source-stream 幫檔案取名字
-    .pipe( source('bundle.js') )
+        // 利用 vinyl-source-stream 幫檔案取名字
+        .pipe(source(entry))
+        // rename them to have "bundle as postfix"
+        .pipe(rename({
+            extname: '-bundle.js'
+        }))
 
-    // 接著就回到 gulp 系統做剩下事
-    // 這裏是直接存檔到硬碟
-    .pipe( gulp.dest('./build') )
-
+        // 接著就回到 gulp 系統做剩下事
+        // 這裏是直接存檔到硬碟
+        .pipe( gulp.dest(paths.destDir) )
+    });
+    // create a merged stream
+    return es.merge.apply(null, tasks);
 });
 
 /**
  * 縮短 app.css
  */
-gulp.task('minify-css', function() {
-  gulp.src( paths.css )
-    .pipe(minifyCSS(
-      {
-          noAdvanced: false,
-          keepBreaks:true,
-          cache: true // 這是 gulp 插件獨有的
-      }))
-    .pipe(gulp.dest( paths.destCSS ))
-});
+// gulp.task('minify-css', function() {
+//   gulp.src( paths.css )
+//     .pipe(minifyCSS(
+//       {
+//           noAdvanced: false,
+//           keepBreaks:true,
+//           cache: true // 這是 gulp 插件獨有的
+//       }))
+//     .pipe(gulp.dest( paths.destCSS ))
+// });
 
 
 /**
  * 將 index.html 與 css/ 複製到 build/ 下面
  * 才方便測試
  */
-gulp.task('copy', function(){
-    return gulp.src([ 'app/index.html' ], { base: 'app' } )
-    .pipe( gulp.dest(paths.destDir));
-})
+// gulp.task('copy', function(){
+//     return gulp.src([ 'app/index.html' ], { base: 'app' } )
+//     .pipe( gulp.dest(paths.destDir));
+// })
 
 
 /**
@@ -91,7 +108,7 @@ gulp.task('copy', function(){
 gulp.task('watch', function() {
     // console.log( 'watch 跑' );
 
-    gulp.watch( 'app/**/*', ['build-less','bundle-js', 'minify-css', 'copy', 'refresh'] );
+    gulp.watch( 'app/**/*', ['build-less','bundle-js', 'refresh'] );
 });
 
 /**
@@ -120,4 +137,4 @@ gulp.task('default', ['dev']);
  * 廣播 livereload 事件
  * 啟動 8000 server 供本地跑
  */
-gulp.task('dev', ['build-less', 'bundle-js', 'minify-css', 'copy', 'watch'] );
+gulp.task('dev', ['build-less', 'bundle-js', 'watch'] );
