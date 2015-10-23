@@ -12,12 +12,12 @@ exports.index = function(req, res) {
 };
 
 /*
- * GET home page.
+ * GET prods api.
  */
 exports.api = function(req, res) {
   var vendno = req.params.vendno;
   var prodno = req.params.prodno;
-  var model = require('../app/model/' + vendno + '/' + prodno + '.json');
+  var model = require('../app/js/model/' + vendno + '/' + prodno + '.json');
   res.json(model);   
 
 };

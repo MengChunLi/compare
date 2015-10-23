@@ -58,6 +58,14 @@ var CompareAction = {
 
     },
 
+    removeAll: function() {
+
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.ALL_REMOVE
+        });
+
+    },
+
     /**
      * 
      */

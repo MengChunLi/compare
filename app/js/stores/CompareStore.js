@@ -22,7 +22,36 @@ var EventEmitter = require('events').EventEmitter; // 取得一個 pub/sub 廣�
 var Store = new EventEmitter();
 //{"todos":[{"name":"thth","uid":"41bd_041g","created":1443621200705}],"selectedItem":{"name":"thth","uid":"41bd_041g","created":1443621200705}}
 
-//var compareData = null;
+var prodsID = [
+  {
+    vendNo: "VDR0000001843",
+    prodNo: "SPKGE15102505A"
+  },
+  {
+    vendNo: "VDR0000001888",
+    prodNo: "FUK05151226A"
+  },
+  {
+    vendNo: "VDR0000001888",
+    prodNo: "OSA05160129A"
+  },
+  {
+    vendNo: "VDR0000001913",
+    prodNo: "OSA05BR151123"
+  },
+  {
+    vendNo: "VDR0000001943",
+    prodNo: "NRT05CX5N28C"
+  },
+  {
+    vendNo: "VDR0000007986",
+    prodNo: "SPK05GEA2515AA"
+  },
+];
+
+var prodsApi = prodsID.map(function(item) {
+    return '/api/' + item.vendNo + '/' + item.prodNo;
+});
 
 // // 目前選取的 todo 項目
 var selectedItem = null;
@@ -55,9 +84,14 @@ $.extend( Store, {
     getAll: function(){
        // selectedItem = window.addEventListener('storage', this.handleStorage );
         return {
-            //compareData: compareData,
+            prodsApi: prodsApi,
             selectedItem: selectedItem
         }
+    },
+
+    getProds: function () {
+        console.log(prodsApi);
+       // console.log(prods);
     },
 
     //
@@ -108,9 +142,9 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
         case AppConstants.ITEM_REMOVE:
 
             selectedItem = selectedItem.filter( function(item){
-                console.log('item: ',item,'action: ',action.item);
+                //console.log('item: ',item,'action: ',action.item);
                 //console.log('item:',item, 'action: ', action.item);
-                return item.uid != action.item.uid;
+                return item.pfProdNo != action.item.pfProdNo;
             })
 
             // 如果當前選取的 item 被刪掉了，要記錄這個事實
@@ -119,6 +153,21 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             // }
 
             console.log( 'Store 刪完: ', selectedItem );
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            persist();
+                
+            break;
+
+        /**
+         * 
+         */
+        case AppConstants.ALL_REMOVE:
+
+            selectedItem = [];
+
+            console.log( 'Store 全刪: ', selectedItem );
 
             Store.emit( AppConstants.CHANGE_EVENT );
 

@@ -8,34 +8,59 @@ var ProdListItem = React.createFactory(require('./prodListItem.jsx'));
  *
  */
 var comp = React.createClass({
-
-   // componentWillMount: function() {
-   //  var compareData = this.props.truth.prods;
-   // console.log(compareData);
-   // },
+  getInitialState: function() {
+    return {prods : []};
+  },
+  componentWillMount: function() {
+    var _prods = [];
+    var prodsApi = this.props.truth.prodsApi;
+    var _this = this;
+    $.each(prodsApi, function(index, value) {
+      $.ajax({
+        type: 'GET',
+        url: value,
+        dataType: 'json',
+        success: function(data) {
+          //console.log(data);
+          _prods.push(data);
+          _this.setState({prods : _prods});
+        },
+        error: function(e) {
+           console.log('error', e);
+        }
+      });
+    });
+  },
+  shouldComponentUpdate: function(nextProps, nextState) {
+    //console.log(nextState.prods.length, this.props.truth.prodsApi.length);
+    // 當prods抓完所有資料再一次render
+    return nextState.prods.length === this.props.truth.prodsApi.length;
+  },
   render: function() {
     var selectedItem = this.props.truth.selectedItem;
     //console.log('selectedItem: ',selectedItem);
-    // 輸出已選擇的項目uid array
-    var uidSelected = [];
+    // 輸出已選擇的項目pfProdNo array
+    var prodNoSelected = [];
     for (var i = 0; i < selectedItem.length; i++) {
-        uidSelected[i] = selectedItem[i].uid;
+        prodNoSelected[i] = selectedItem[i].pfProdNo;
     };
-    var arr = this.props.prods
+    console.log(this.state.prods);
+    var arr = this.state.prods
     
     // 將項目轉成 <ListItem> 元件供顯示
-    .map(function(item){
+    .map(function(item, index){
   
-        console.log('truth: ',this.props.truth.selectedItem);
+        //console.log('index: ',index);
         // 確認是否包否為Selected
-        var isSelected = uidSelected.indexOf(item.uid) > -1 ? true : false;
+        var isSelected = prodNoSelected.indexOf(item.pfProdNo) > -1 ? true : false;
 
-        console.log('isSelected2: ',isSelected);
+        //console.log('isSelected2: ',isSelected);
         return <ProdListItem
 
+                index={index}
                 prod={item}
                 selected = {isSelected}
-                key={item.uid} />
+                key={item.pfProdNo} />
 
     }, this)
 

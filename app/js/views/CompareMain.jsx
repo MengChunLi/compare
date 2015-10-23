@@ -13,6 +13,9 @@ var CompareBox = React.createFactory( require('./CompareBox.jsx') );
 var CompareStore = require('../stores/CompareStore');
 var AppConstants = require('../constants/AppConstants');
 var actions = require('../actions/CompareAction');
+//var model = require('../model/CompareAction');
+
+
 
 var prods = [
   {
@@ -91,7 +94,8 @@ var comp = React.createClass({
      * 主程式進入點
      */
     componentWillMount: function() {
-        CompareStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
+
+      CompareStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
         
         // 要用 interval 擋一下
         //window.addEventListener('resize', this.handleResize );
@@ -231,7 +235,7 @@ var comp = React.createClass({
     },
 
     getTruth: function() {
-
+      //CompareStore.getProds();
         // 是從 TodoStore 取資料(as the single source of truth)
         return CompareStore.getAll();
     },

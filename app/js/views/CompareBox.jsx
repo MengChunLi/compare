@@ -1,4 +1,5 @@
 var shortId = require('shortid');
+var actions = require('../actions/CompareAction');
 var comp = React.createClass({
     render: function() {
       var miniImg = this.props.truth.selectedItem
@@ -7,7 +8,7 @@ var comp = React.createClass({
             return <div className="mini-img-box" key={_key}>
                 <button className="delete-btn" type="button">x</button>
                 <a className="mini-img" href={item.prodUrl} target="_blank">
-                    <img src={item.imgUrl} />
+                    <img src={item.vImgUrl} />
                 </a>
                 </div>
         })
@@ -20,10 +21,18 @@ var comp = React.createClass({
                 </div>
                 <div className="mini-images">{miniImg}</div>
                 <a href="#" className="btn-green btn-compare compareLink" target="_blank">立即比較</a>
-                <button type="button" className="close clean-all clear-compare-box"><span>清除所有項目</span></button>
+                <button type="button" className="close clean-all clear-compare-box" onClick={this.handleClick}><span>清除所有項目</span></button>
             </div>
         );
-    }
+    },
+
+    handleClick: function(event) {
+
+      actions.removeAll();
+
+    },
+
+    noop: function(){}
 });
 
 module.exports = comp;

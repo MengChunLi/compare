@@ -8,7 +8,10 @@ var comp = React.createClass({
     componentWillMount: function() {
         var prod = JSON.parse(document.getElementById('prodObj').getAttribute('data-prod'));
         console.log(prod);
-
+        /*
+         * http://localhost:3000/api/VDR0000001843/SPKGE15102505A
+         * http://localhost:3000/api/VDR0000007986/SPK05GEA2515AA
+         */
         $.ajax({
           type: 'GET',
           url: prod[1].url,
