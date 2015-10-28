@@ -20,7 +20,7 @@ var paths = {
     main: './app/js/boot.js',
     result: './app/js/result.js',
     css: './app/assets/css/*.css',
-    less: './app/assets/less/main.less',
+    less: './app/assets/less/*.less',
     destDir: 'public'
 };
 

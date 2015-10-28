@@ -23,34 +23,16 @@ var Store = new EventEmitter();
 //{"todos":[{"name":"thth","uid":"41bd_041g","created":1443621200705}],"selectedItem":{"name":"thth","uid":"41bd_041g","created":1443621200705}}
 
 var prodsID = [
-  {
-    vendNo: "VDR0000001843",
-    prodNo: "SPKGE15102505A"
-  },
-  {
-    vendNo: "VDR0000001888",
-    prodNo: "FUK05151226A"
-  },
-  {
-    vendNo: "VDR0000001888",
-    prodNo: "OSA05160129A"
-  },
-  {
-    vendNo: "VDR0000001913",
-    prodNo: "OSA05BR151123"
-  },
-  {
-    vendNo: "VDR0000001943",
-    prodNo: "NRT05CX5N28C"
-  },
-  {
-    vendNo: "VDR0000007986",
-    prodNo: "SPK05GEA2515AA"
-  },
+  "SPKGE15102505A",
+  "FUK05151226A",
+  "OSA05160129A",
+  "OSA05BR151123",
+  "TYO05TZ151028U",
+  "SPK05GEA2515AA"
 ];
 
 var prodsApi = prodsID.map(function(item) {
-    return '/api/' + item.vendNo + '/' + item.prodNo;
+    return '/api/' + item;
 });
 
 // // 目前選取的 todo 項目

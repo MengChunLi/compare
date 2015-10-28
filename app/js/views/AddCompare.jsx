@@ -22,7 +22,7 @@ var comp = React.createClass({
 
   render: function() {
     var labelId = getLabelId();
-    console.log('this.props.selected: ',this.props.selected);
+    //console.log('this.props.selected: ',this.props.selected);
     return (
       <div className="add-compare-btn">
         <input type="checkbox" className="css-checkbox addCompareBtn" name="addCompareBtn" id={labelId} checked={this.props.selected}  onChange={this.handleChange} />
@@ -35,7 +35,7 @@ var comp = React.createClass({
     var item = this.props.prod;
     var selected = this.props.selected;
 
-    console.log('item selected: ',item);
+    //console.log('item selected: ',item);
     this.setState({defaultChecked: event.target.checked});
 
     // 產生UID給array prop key 使用

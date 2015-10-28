@@ -3,7 +3,7 @@
  */
 var actions = require('../actions/CompareAction');
 var ProdListItem = React.createFactory(require('./prodListItem.jsx'));
-
+var _prods = [];
 /**
  *
  */
@@ -11,25 +11,26 @@ var comp = React.createClass({
   getInitialState: function() {
     return {prods : []};
   },
-  componentWillMount: function() {
-    var _prods = [];
-    var prodsApi = this.props.truth.prodsApi;
-    var _this = this;
-    $.each(prodsApi, function(index, value) {
-      $.ajax({
+  getProdsData: function(element) {
+    $.ajax({
         type: 'GET',
-        url: value,
+        url: element,
         dataType: 'json',
         success: function(data) {
           //console.log(data);
           _prods.push(data);
-          _this.setState({prods : _prods});
-        },
+          this.setState({prods : _prods});
+        }.bind(this),
         error: function(e) {
            console.log('error', e);
         }
       });
-    });
+  },
+  componentWillMount: function() {
+    var prodsApi = this.props.truth.prodsApi;
+    prodsApi.forEach(function(element, index){
+      this.getProdsData(element);
+    }, this);
   },
   shouldComponentUpdate: function(nextProps, nextState) {
     //console.log(nextState.prods.length, this.props.truth.prodsApi.length);
@@ -44,7 +45,7 @@ var comp = React.createClass({
     for (var i = 0; i < selectedItem.length; i++) {
         prodNoSelected[i] = selectedItem[i].pfProdNo;
     };
-    console.log(this.state.prods);
+    //console.log(this.state.prods);
     var arr = this.state.prods
     
     // 將項目轉成 <ListItem> 元件供顯示

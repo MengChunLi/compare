@@ -9,7 +9,7 @@ var routes = require('./routes/core-routes');
 router.get('/', routes.index);
 // 結果頁
 router.get('/results?', routes.results);
-router.get('/api/:vendno/:prodno', routes.api);
+router.get('/api/:prodno', routes.api);
 // 取得靜態檔案
 app.use(  express.static( path.join( __dirname, 'public' )));
 // 將路由套用至應用程式

@@ -1,0 +1,168 @@
+.compare-list{
+    .day-img{
+        width: 100%;
+        margin: auto;
+    }
+    .travel-day{
+        width: 50%;
+        font-size: 24px;
+        text-align: right;
+        padding-right: 20px;
+        font-style: italic;
+    }
+    .prod-img-box{
+        width: 50%;
+        .prod-img{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            .box-shadow(0px 0px 2px rgba(0, 0, 0, 0.3));
+            border: 1px solid white;
+            overflow: hidden;
+            img{
+                height: 60px;
+            }
+        }
+    }
+    .pfprod-no{
+        font-size: 13px;
+        padding-top: 8px;
+        height: 34px;
+    }
+    h1.prod-nm{
+        font-size: 16px;
+        line-height: 24px;
+        margin: 10px 0;
+        height: 70px;
+        overflow: hidden;
+    }
+    .qty{
+        font-size: 14px;
+        color: @color-logo-green;
+        margin-bottom: 10px;
+    }
+    .price-order-box{
+        text-align: center;
+        .price-order{
+            width: 100%;
+            .text-price{
+                font-size: 24px;
+                margin-right: 5px;
+            }
+            .btn-order{
+                display: none;
+                width: 100px;
+                padding: 5px 0;
+                font-size: 20px;
+                margin: auto;
+                &.active{
+                    display: block;
+                }
+            }
+        }
+    }
+    .not-found{
+        display: none;
+    }
+    &.notFound{
+        .not-found{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -63px;
+            margin-top: -45px;
+            display: block;
+            text-align: center;
+            .icon-sad{
+                display: block;
+                margin: auto;
+                background-position: 50% 50%;
+            }
+            span{
+                display: block;
+                padding-top: 5px;
+                color: @color-dark-gray;
+            }
+        }
+        .list-block{
+            visibility: hidden;
+        }
+    }
+}
+#fixedContent.fixed{
+    position: fixed;
+    width: 695px;
+    z-index: 10;
+    top: 0;
+    border-left: 1px solid rgba(0, 0, 0, 0);
+    .pfprod-no, .qty{
+        display: none;
+    }
+}
+@media (min-width: 992px) {
+    .compare-list{
+        .travel-day{
+            font-size: 24px;
+            font-family: @font-family2;
+        }
+        .prod-img-box{
+            .prod-img{
+                border: 3px solid white;
+                width: 100px;
+                height: 100px;
+                img{
+                    height: 100px;
+                    
+                }
+            }
+        }
+        .pfprod-no{
+            height: auto;
+        }
+        h1.prod-nm{
+            font-size: 18px;
+            font-family: @font-family2;
+            height: 75px;
+        }
+        .qty{
+            font-size: 15px;
+            font-family: @font-family2;
+        }
+        .price-order-box{
+            display: table;
+            text-align: left;
+            .price-order{
+                display: table-cell;
+                vertical-align: middle;
+
+                .text-price{
+                    font-size: 24px;
+                    font-family: @font-family2;
+                }
+                .btn-order{
+                    float: right;
+                    width: 80px;
+                    font-size: 20px;
+                    font-family: @font-family2;
+                }
+            }
+        }
+    }
+    #fixedContent.fixed{
+        width: 925px;
+        .compare-list{
+            .prod-img{
+                width: 60px;
+                height: 60px;
+                img{
+                    height: 60px;
+                }
+            }
+            h1.prod-nm{
+                font-size: 15px;
+                line-height: 22px;
+                height: 44px;
+            }
+        }
+    }
+}

@@ -13,63 +13,6 @@ var CompareBox = React.createFactory( require('./CompareBox.jsx') );
 var CompareStore = require('../stores/CompareStore');
 var AppConstants = require('../constants/AppConstants');
 var actions = require('../actions/CompareAction');
-//var model = require('../model/CompareAction');
-
-
-
-var prods = [
-  {
-    uid: 0,
-    prodNo: "VDR00001",
-    prodNm: "【五星保證‧第2人减2千】楓迷北海道‧黑岳雪山紅葉浪漫‧星野渡假村", 
-    price: "35,999",
-    priceO: "39,000",
-    travelDays: 6,
-    imgUrl: "http://www.eztravel.com.tw/img/FRN/FRN0000009392.gif",
-    prodUrl: "http://vacation.eztravel.com.tw/pkgfrn/introduction/VDR0000001838/NNA030905CI6E"
-  },
-  {
-    uid: 1,
-    prodNo: "VDR00002",
-    prodNm: "《楓情北陸昇龍道》黑部立山楓情`．惠那峽遊船．白川鄕合掌村．牧歌之里．郡上八幡散策．名古屋城", 
-    price: "35,600",
-    priceO: "43,000",
-    travelDays: 7,
-    imgUrl: "http://vacation.eztravel.com.tw/assets/pkgfrn/images/spot/1X_/01/Hokuriku-02.jpg",
-    prodUrl: "http://vacation.eztravel.com.tw/pkgfrn/introduction/VDR0000001888/OSA05160302A"
-  },
-  {
-    uid: 2,
-    prodNo: "VDR00003",
-    prodNm: "超值．九州豪斯登堡、柳川小扁舟、九重夢吊橋、阿蘇火之國", 
-    price: "24,900",
-    priceO: "33,000",
-    travelDays: 5,
-    imgUrl: "http://www.eztravel.com.tw/img/FRN/FRN0000010336.gif",
-    prodUrl: "http://vacation.eztravel.com.tw/pkgfrn/introduction/VDR0000001943/NRT05TZ6417A"
-  },
-  {
-    uid: 3,
-    prodNo: "VDR00004",
-    prodNm: "【升等五星希爾頓】浪漫秋舞北海道、單車楓情、熊牧場、支芴湖、溫泉螃蟹美饌5日", 
-    price: "38,999",
-    priceO: "43,000",
-    travelDays: 7,
-    imgUrl: "http://www.eztravel.com.tw/img/VDR/maple-02.jpg",
-    prodUrl: "http://vacation.eztravel.com.tw/pkgfrn/introduction/VDR0000001838/NTN030905CI6"
-  },
-  {
-    uid: 4,
-    prodNo: "VDR00005",
-    prodNm: "【升等五星希爾頓】浪漫秋舞北海道、單車楓情、熊牧場、支芴湖、溫泉螃蟹美饌", 
-    price: "45,900",
-    priceO: "50,900",
-    travelDays: 8,
-    imgUrl: "http://www.eztravel.com.tw/img/FRN/FRN0000009346.gif",
-    prodUrl: "http://vacation.eztravel.com.tw/pkgfrn/introduction/VDR0000001888/SPK05160314A"
-  } 
-];
-
 
 /**
  *
@@ -209,7 +152,7 @@ var comp = React.createClass({
             return (
               <div className="wrap">
                 <div className="container">
-                  <ProdList prods={prods} truth={this.state} />
+                  <ProdList truth={this.state} />
                    <div className="compare-alert-msg"></div>
                   <CompareBox truth={this.state}/>
                 </div>

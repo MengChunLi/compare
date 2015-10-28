@@ -17,7 +17,7 @@ exports.index = function(req, res) {
 exports.api = function(req, res) {
   var vendno = req.params.vendno;
   var prodno = req.params.prodno;
-  var model = require('../app/js/model/' + vendno + '/' + prodno + '.json');
+  var model = require('../app/js/model/' + prodno + '.json');
   res.json(model);   
 
 };
@@ -27,18 +27,17 @@ exports.api = function(req, res) {
  */
 exports.results = function (req, res, next) {
     var prodObj = req.query.prod.map(function(item) {
-        var _item = [];
+        //var _item = [];
         //console.log(item);
-         _item = item.split('_');
+         //_item = item.split('_');
         return { 
-                "vendno" : _item[0],
-                "prodno" : _item[1],
-                "url" : BASEURL + _item[0] + "/" + _item[1]
+                "prodno" : item,
+                "url" : BASEURL + item
             };
     });
 
     console.log('query: ' , req.query.prod);
     console.log(prodObj);
-    res.render('results.ejs', { title: 'Hey', prodObj: JSON.stringify(prodObj)});
+    res.render('results.ejs', { title: '國外旅遊商品比較', prodObj: JSON.stringify(prodObj)});
     //res.status('prodno: ').send(prodObj);
 };
