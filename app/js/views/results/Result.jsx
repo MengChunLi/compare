@@ -1,4 +1,7 @@
 var ProdIntro = React.createFactory(require('./ProdIntro.jsx'));
+var DetailPrice = React.createFactory(require('./DetailPrice.jsx'));
+var Promo = React.createFactory(require('./Promo.jsx'));
+var AirInfo = React.createFactory(require('./AirInfo.jsx'));
 
 var ResultItem = React.createFactory(require('./ResultItem.jsx'));
 var _prods = [];
@@ -54,7 +57,9 @@ var comp = React.createClass({
         <div className="container">
           <h1 className="text-main-title text-logo-green">國外旅遊商品比較</h1>
           <ProdIntro prods={this.state.prods}/>
-       
+          <DetailPrice prods={this.state.prods}/>
+          <Promo prods={this.state.prods}/>
+          <AirInfo prods={this.state.prods}/>
         </div>
       );
     }
