@@ -73,7 +73,7 @@ var comp = React.createClass({
                             </div>
                         </div>
                     </div> 
-                    <div className="pfprod-no">{item.vendNo}/{item.pfProdNo}</div>
+                    <div className="pfprod-no">{item.vendNo},{item.pfProdNo}</div>
                     <h1 className="prod-nm">{item.prodNm}</h1>
                     <div className="qty">可報{item.allotQty}人/共{item.totQty}個團位</div>
                     <div className="price-order-box">

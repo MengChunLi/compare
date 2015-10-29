@@ -3,8 +3,6 @@
  */
 var ListLeftSide = React.createFactory(require('./ListLeftSide.jsx'));
 var ListRightSide = React.createFactory(require('./ListRightSide.jsx'));
-var cx = React.addons.classSet;
-
 /**
  *
  */
@@ -24,16 +22,9 @@ var comp = React.createClass({
    */
   render: function() {
 
-    // 這裏使用 react class add-on 來切換樣式顯示
-    // 這樣做比較有條理，比直接組合多個字串來的好控制
-    var classes = cx({
-        'list-box': true,
-        'selected': false
-    });
-    
     return (
       
-      <div className={classes} >
+      <div>
 
            <ListLeftSide index={this.props.index} prod={this.props.prod} />
            <ListRightSide prod={this.props.prod} selected = {this.props.selected} />
