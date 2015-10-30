@@ -1,6 +1,4 @@
-/**
- *
- */
+var React =  require('react');
 var classNames = require('classnames');
 
 /**
@@ -26,7 +24,7 @@ var comp = React.createClass({
   render: function() {
 
     var arr = this.props.prods.map(function(item) {
-      console.log(item);
+      //console.log(item);
       // react class add-on classSet has been deprecated
       // 這裡改為使用classnames
       var compareList = classNames({

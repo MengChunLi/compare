@@ -14,9 +14,13 @@
 // 
 // 因為 require('...') 只是拿到一份元件定義檔，無法直接使用
 // 要用它建立一個 factory，之後才能產出 instance，下面 createFactory() 就是在建立工廠
+
+
+// v0.14 開始要使用ReactDOM
+var React =  require('react');
+var ReactDOM =  require('react-dom');
 var CompareMain = React.createFactory(require('./views/CompareMain.jsx'));
-$(function(){
 
-	React.render( CompareMain(), document.getElementById('container') );
+ReactDOM.render( CompareMain(), document.getElementById('container') );
 
-})
+

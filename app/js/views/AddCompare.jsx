@@ -1,3 +1,4 @@
+var React =  require('react');
 var shortId = require('shortid');
 var actions = require('../actions/CompareAction');
 

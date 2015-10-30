@@ -1,8 +1,7 @@
-/**
- *
- */
+var React =  require('react');
 var classNames = require('classnames');
 var utils = require('../../utils/utils.js');
+var DateSelect = React.createFactory(require('./DateSelect.jsx'));
 var shortId = require('shortid');
 /**
  *
@@ -56,9 +55,9 @@ var comp = React.createClass({
       });
       return  <div key={item.pfProdNo} className={compareList}>
                 <div className="list-block">
-                  <select className="select-depDate" data-width="100%">
-                    <option value="0" data-content="<span class='text-dark-gray'>11/03(二)&amp;nbsp;出發</span>&amp;emsp;<span class='text-green'></span>" selected="true"></option>
-                  </select>
+
+                  <DateSelect />
+                  
                   <div className="airInfo">
                     <div className="green-border-top">
 

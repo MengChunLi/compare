@@ -1,6 +1,4 @@
-/**
- *
- */
+var React =  require('react');
 var AddCompare = React.createFactory(require('./AddCompare.jsx'));
 
 var comp = React.createClass({

@@ -6,8 +6,7 @@
 //========================================================================
 //
 // import
-
-// var React = require('react');
+var React =  require('react');
 var ProdList = React.createFactory( require('./ProdList.jsx') );
 var CompareBox = React.createFactory( require('./CompareBox.jsx') );
 var CompareStore = require('../stores/CompareStore');
@@ -105,12 +104,6 @@ var comp = React.createClass({
         window.removeEventListener('storage', this.handleStorage );
     },
 
-    /**
-     *
-     */
-    componentDidUnmount: function() {
-        //
-    },
 
     //========================================================================
     //

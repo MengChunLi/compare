@@ -1,9 +1,10 @@
+var React =  require('react');
+
 var ProdIntro = React.createFactory(require('./ProdIntro.jsx'));
 var DetailPrice = React.createFactory(require('./DetailPrice.jsx'));
 var Promo = React.createFactory(require('./Promo.jsx'));
 var AirInfo = React.createFactory(require('./AirInfo.jsx'));
 
-var ResultItem = React.createFactory(require('./ResultItem.jsx'));
 var _prods = [];
 var _isSuccess = [];
 var comp = React.createClass({
@@ -50,9 +51,6 @@ var comp = React.createClass({
     
     render: function() {
       //console.log('this.state.prods', this.state.prods);
-      var arr = this.state.prods.map(function(item) {
-        return <ResultItem key={item.pfProdNo} prod={item}/>
-      });
       return (
         <div className="container">
           <h1 className="text-main-title text-logo-green">國外旅遊商品比較</h1>
