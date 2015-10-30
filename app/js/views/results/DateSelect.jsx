@@ -1,17 +1,46 @@
 var React =  require('react');
 var classNames = require('classnames');
 var Select = require('react-select');
+var shortId = require('shortid');
 
-var DateOption = React.createFactory(require('./DateOption.jsx'));
+var DATES = require('../../model/dates');
+
+var DateOption = require('./DateOption.jsx');
 /**
  *
  */
 
-var options = [
-      { value: '0', label: '20151012' },
-      { value: '1', label: '20151015' }
-  ];
 var comp = React.createClass({
+  getInitialState: function() {
+    return {
+      options: [{'value': 0 ,'date' : this.props.saleDt, 'fullStatus': this.props.fullStatus}]
+    };
+  },
+
+  componentWillMount: function() {
+    var pfGProdNo = this.props.pfGProdNo;
+    var ajaxURL = "/api/otherDate/" + pfGProdNo;
+    $.ajax({
+        type: 'GET',
+        url: ajaxURL,
+        dataType: 'json', //specify jsonp
+        success: function(data) {
+           var keyID = shortId.generate();
+           // 每個選項必須有個唯一的value
+           var _data = data.map(function(item, index) {
+              item.value = index;
+             return item;
+           });
+           console.log(_data);
+           this.setState({
+            options: _data
+          });
+        }.bind(this),
+        error: function(e) {
+          console.log('error', e);
+        }.bind(this)
+      });
+  },
 
   render: function() {
    
@@ -19,12 +48,13 @@ var comp = React.createClass({
 
     return (
       
-      <Select placeholder="請選擇出發日期"
+      <Select 
+              onOptionLabelClick={this.onLabelClick}
+              placeholder="請選擇出發日期"
               value="0"
               optionComponent={DateOption}
-              options={options}
-              searchable={false}
-              onChange={this.handleChange} />
+              options={this.state.options}
+              searchable={false} />
     );
 
   },

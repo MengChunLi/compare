@@ -23,12 +23,12 @@ var Store = new EventEmitter();
 //{"todos":[{"name":"thth","uid":"41bd_041g","created":1443621200705}],"selectedItem":{"name":"thth","uid":"41bd_041g","created":1443621200705}}
 
 var prodsID = [
-  "SPKGE15102505A",
   "FUK05151226A",
   "OSA05160129A",
   "OSA05BR151123",
-  "TYO05TZ151028U",
-  "SPK05GEA2515AA"
+  "SPKGE16010205A",
+  "SPK05GEA2515AA",
+  "TYO05TZ151028U"
 ];
 
 var prodsApi = prodsID.map(function(item) {

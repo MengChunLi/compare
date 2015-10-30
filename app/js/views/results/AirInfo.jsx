@@ -1,7 +1,7 @@
 var React =  require('react');
 var classNames = require('classnames');
 var utils = require('../../utils/utils.js');
-var DateSelect = React.createFactory(require('./DateSelect.jsx'));
+var DateSelect = require('./DateSelect.jsx');
 var shortId = require('shortid');
 /**
  *
@@ -26,6 +26,7 @@ var comp = React.createClass({
   render: function() {
 
     var arr = this.props.prods.map(function(item) {
+      //console.log(item);
       var compareList = classNames({
         'compare-list': true,
         'notFound': !item.isSuccess,
@@ -56,7 +57,7 @@ var comp = React.createClass({
       return  <div key={item.pfProdNo} className={compareList}>
                 <div className="list-block">
 
-                  <DateSelect />
+                  <DateSelect pfGProdNo={item.pfGProdNo} saleDt={item.saleDt} fullStatus={item.fullStatus}/>
                   
                   <div className="airInfo">
                     <div className="green-border-top">

@@ -7,8 +7,8 @@
 //
 // import
 var React =  require('react');
-var ProdList = React.createFactory( require('./ProdList.jsx') );
-var CompareBox = React.createFactory( require('./CompareBox.jsx') );
+var ProdList = require('./ProdList.jsx');
+var CompareBox = require('./CompareBox.jsx');
 var CompareStore = require('../stores/CompareStore');
 var AppConstants = require('../constants/AppConstants');
 var actions = require('../actions/CompareAction');

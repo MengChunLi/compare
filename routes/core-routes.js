@@ -15,9 +15,18 @@ exports.index = function(req, res) {
  * GET prods api.
  */
 exports.api = function(req, res) {
-  var vendno = req.params.vendno;
   var prodno = req.params.prodno;
   var model = require('../app/js/model/' + prodno + '.json');
+  res.json(model);   
+
+};
+
+/*
+ * GET otherDate api.
+ */
+exports.apiOtherDate = function(req, res) {
+  var pfGProdNo = req.params.pfGProdNo;
+  var model = require('../app/js/model/otherDate/' + pfGProdNo + '.json');
   res.json(model);   
 
 };

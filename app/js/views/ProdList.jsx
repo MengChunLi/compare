@@ -1,6 +1,6 @@
 var React =  require('react');
 var actions = require('../actions/CompareAction');
-var ProdListItem = React.createFactory(require('./prodListItem.jsx'));
+var ProdListItem = require('./prodListItem.jsx');
 var _prods = [];
 /**
  *

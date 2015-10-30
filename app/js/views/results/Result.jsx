@@ -1,9 +1,9 @@
 var React =  require('react');
 
-var ProdIntro = React.createFactory(require('./ProdIntro.jsx'));
-var DetailPrice = React.createFactory(require('./DetailPrice.jsx'));
-var Promo = React.createFactory(require('./Promo.jsx'));
-var AirInfo = React.createFactory(require('./AirInfo.jsx'));
+var ProdIntro = require('./ProdIntro.jsx');
+var DetailPrice = require('./DetailPrice.jsx');
+var Promo = require('./Promo.jsx');
+var AirInfo = require('./AirInfo.jsx');
 
 var _prods = [];
 var _isSuccess = [];
@@ -27,7 +27,7 @@ var comp = React.createClass({
             console.log('error', e);
           }.bind(this),
           complete: function(e) {
-            console.log(_prods);
+            //console.log(_prods);
             this.setState({
               prods: _prods
             });

@@ -1,6 +1,6 @@
 var React =  require('react');
-var ListLeftSide = React.createFactory(require('./ListLeftSide.jsx'));
-var ListRightSide = React.createFactory(require('./ListRightSide.jsx'));
+var ListLeftSide = require('./ListLeftSide.jsx');
+var ListRightSide = require('./ListRightSide.jsx');
 /**
  *
  */
