@@ -6,6 +6,7 @@ var shortId = require('shortid');
 var DATES = require('../../model/dates');
 
 var DateOption = require('./DateOption.jsx');
+var DateOptionSingle = require('./DateOptionSingle.jsx');
 /**
  *
  */
@@ -53,6 +54,7 @@ var comp = React.createClass({
               placeholder="請選擇出發日期"
               value="0"
               optionComponent={DateOption}
+              singleValueComponent={DateOptionSingle}
               options={this.state.options}
               searchable={false} />
     );

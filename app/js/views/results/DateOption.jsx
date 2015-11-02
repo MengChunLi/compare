@@ -1,5 +1,6 @@
 var React =  require('react');
 var classNames = require('classnames');
+var SingleOption = require('./SingleOption.jsx');
 /**
  *
  */
@@ -22,7 +23,7 @@ var comp = React.createClass({
             onMouseLeave={this.props.mouseLeave}
             onMouseDown={this.props.mouseDown}
             onClick={this.props.mouseDown}>
-            <span className='text-dark-gray'>{obj.date} 出發  </span><span className='text-green'>{obj.fullStatus}</span>            
+            <SingleOption date={obj.date} fullStatus={obj.fullStatus}/>
         </div>
     );
 
