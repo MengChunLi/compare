@@ -16,6 +16,7 @@ var propTypes = {
 var comp = React.createClass({
   render: function() {
     var obj = this.props.option;
+    //console.log(this.props);
     return (
         
         <div className={this.props.className}

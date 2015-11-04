@@ -11,6 +11,7 @@ var propTypes = {
 var comp = React.createClass({
   render: function() {
     var obj = this.props.value;
+    //console.log(this.props);
     return (
         
         <div className="Select-placeholder">

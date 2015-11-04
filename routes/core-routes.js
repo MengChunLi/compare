@@ -42,7 +42,7 @@ exports.results = function (req, res, next) {
         return { 
                 "prodno" : item,
                 "url" : BASEURL + item
-            };
+               };
     });
 
     console.log('query: ' , req.query.prod);

@@ -25,7 +25,7 @@ var comp = React.createClass({
    */
   render: function() {
 
-    var arr = this.props.prods.map(function(item) {
+    var arr = this.props.prods.map(function(item, index) {
       //console.log(item);
       var compareList = classNames({
         'compare-list': true,
@@ -54,10 +54,19 @@ var comp = React.createClass({
                   </div>
                 </div>
       });
+      
+      var props = {
+        index: index,
+        pfProdNo: item.pfProdNo,
+        pfGProdNo: item.pfGProdNo,
+        saleDt: item.saleDt,
+        fullStatus: item.fullStatus,
+        onChange: this.handleFieldChange
+      }
       return  <div key={item.pfProdNo} className={compareList}>
                 <div className="list-block">
 
-                  <DateSelect pfGProdNo={item.pfGProdNo} saleDt={item.saleDt} fullStatus={item.fullStatus}/>
+                  <DateSelect {...props}/>
                   
                   <div className="airInfo">
                     <div className="green-border-top">
@@ -85,6 +94,12 @@ var comp = React.createClass({
     );
 
   },
+
+  handleFieldChange: function(val, index){
+    this.props.onChange(val, index);
+    //console.log("AirInfo Selected: ", val, index);
+  },
+
 
   noop: function(){}
 

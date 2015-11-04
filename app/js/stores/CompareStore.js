@@ -24,7 +24,7 @@ var Store = new EventEmitter();
 
 var prodsID = [
   "FUK05151226A",
-  "OSA05160129A",
+  "JXBBRE60101A",
   "OSA05BR151123",
   "SPKGE16010205A",
   "SPK05GEA2515AA",

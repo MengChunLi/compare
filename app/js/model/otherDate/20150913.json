@@ -1,32 +1,5 @@
 [
   {
-    "date": "2015-11-08",
-    "price": 36500,
-    "fullStatus": "結團",
-    "prodNo": "OSA05BR151108T",
-    "allot": 0,
-    "promoText": null,
-    "prodUrl": null
-  },
-  {
-    "date": "2015-11-09",
-    "price": 39500,
-    "fullStatus": "結團",
-    "prodNo": "OSA05BR151109T",
-    "allot": 0,
-    "promoText": null,
-    "prodUrl": null
-  },
-  {
-    "date": "2015-11-15",
-    "price": 41500,
-    "fullStatus": "",
-    "prodNo": "OSA05BR151115",
-    "allot": 10,
-    "promoText": null,
-    "prodUrl": null
-  },
-  {
     "date": "2015-11-22",
     "price": 41500,
     "fullStatus": "",
@@ -50,42 +23,6 @@
     "fullStatus": "",
     "prodNo": "OSA05BR151130",
     "allot": 12,
-    "promoText": null,
-    "prodUrl": null
-  },
-  {
-    "date": "2015-12-01",
-    "price": 33500,
-    "fullStatus": "",
-    "prodNo": "OSA05BR151201T",
-    "allot": 10,
-    "promoText": null,
-    "prodUrl": null
-  },
-  {
-    "date": "2015-12-02",
-    "price": 34500,
-    "fullStatus": "",
-    "prodNo": "OSA05BR151202T",
-    "allot": 16,
-    "promoText": null,
-    "prodUrl": null
-  },
-  {
-    "date": "2015-12-08",
-    "price": 34500,
-    "fullStatus": "",
-    "prodNo": "OSA05BR151208T",
-    "allot": 16,
-    "promoText": null,
-    "prodUrl": null
-  },
-  {
-    "date": "2015-12-21",
-    "price": 34500,
-    "fullStatus": "",
-    "prodNo": "OSA05BR151221T",
-    "allot": 16,
     "promoText": null,
     "prodUrl": null
   }

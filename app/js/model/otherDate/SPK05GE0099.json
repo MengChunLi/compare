@@ -1,1 +1,11 @@
-[{"date":"2015-12-19","price":2.85E+4,"fullStatus":"","prodNo":"SPKGE15121905A","allot":9,"promoText":null,"prodUrl":null},{"date":"2015-12-26","price":2.85E+4,"fullStatus":"","prodNo":"SPKGE15122605A","allot":9,"promoText":null,"prodUrl":null},{"date":"2016-01-02","price":2.85E+4,"fullStatus":"","prodNo":"SPKGE16010205A","allot":9,"promoText":null,"prodUrl":null},{"date":"2016-01-09","price":2.85E+4,"fullStatus":"","prodNo":"SPKGE16010905A","allot":9,"promoText":null,"prodUrl":null},{"date":"2016-01-16","price":2.65E+4,"fullStatus":"","prodNo":"SPKGE16011605A","allot":8,"promoText":null,"prodUrl":null}]
+[
+  {
+    "date": "2016-01-02",
+    "price": 28500,
+    "fullStatus": "",
+    "prodNo": "SPKGE16010205A",
+    "allot": 9,
+    "promoText": null,
+    "prodUrl": null
+  }
+]

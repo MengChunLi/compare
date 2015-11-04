@@ -1,6 +1,5 @@
 var React =  require('react');
 var classNames = require('classnames');
-var SingleOption = require('./SingleOption.jsx');
 /**
  *
  */

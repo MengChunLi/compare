@@ -39,6 +39,8 @@ module.exports = keyMirror({
 
     ITEM_REMOVE: null,
 
+    PROD_UPDATE: null,
+
   	noop: null
 });
 

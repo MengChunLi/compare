@@ -1,1 +1,20 @@
-[{"date":"2015-11-01","price":3.17E+4,"fullStatus":"結團","prodNo":"FUK05151101A","allot":0,"promoText":"已成團","prodUrl":null},{"date":"2015-11-06","price":3.17E+4,"fullStatus":"結團","prodNo":"FUK05151106A","allot":-1,"promoText":null,"prodUrl":null},{"date":"2015-11-07","price":3.17E+4,"fullStatus":"","prodNo":"FUK05151107T","allot":15,"promoText":null,"prodUrl":null},{"date":"2015-11-08","price":2.97E+4,"fullStatus":"結團","prodNo":"FUK05151108A","allot":-1,"promoText":null,"prodUrl":null},{"date":"2015-11-09","price":3.07E+4,"fullStatus":"","prodNo":"FUK05151109A","allot":3,"promoText":"已成團","prodUrl":null},{"date":"2015-11-14","price":3.27E+4,"fullStatus":"結團","prodNo":"FUK05151114B","allot":-1,"promoText":"已成團","prodUrl":null},{"date":"2015-11-15","price":3.17E+4,"fullStatus":"","prodNo":"FUK05151115A","allot":15,"promoText":null,"prodUrl":null},{"date":"2015-11-16","price":3.17E+4,"fullStatus":"","prodNo":"FUK05151116A","allot":13,"promoText":null,"prodUrl":null},{"date":"2015-11-27","price":3.17E+4,"fullStatus":"","prodNo":"FUK05151127A","allot":12,"promoText":"已成團","prodUrl":null},{"date":"2015-11-30","price":3.17E+4,"fullStatus":"","prodNo":"FUK05151130A","allot":7,"promoText":"已成團","prodUrl":null},{"date":"2015-12-02","price":3.17E+4,"fullStatus":"","prodNo":"FUK05151202A","allot":16,"promoText":null,"prodUrl":null},{"date":"2015-12-06","price":3.17E+4,"fullStatus":"","prodNo":"FUK05151206C","allot":18,"promoText":null,"prodUrl":null},{"date":"2015-12-16","price":3.17E+4,"fullStatus":"","prodNo":"FUK05151216B","allot":19,"promoText":null,"prodUrl":null},{"date":"2015-12-22","price":3.17E+4,"fullStatus":"","prodNo":"FUK05151222B","allot":18,"promoText":null,"prodUrl":null},{"date":"2015-12-24","price":3.27E+4,"fullStatus":"","prodNo":"FUK05151224B","allot":5,"promoText":"已成團","prodUrl":null},{"date":"2015-12-26","price":3.17E+4,"fullStatus":"","prodNo":"FUK05151226A","allot":15,"promoText":null,"prodUrl":null},{"date":"2015-12-29","price":3.57E+4,"fullStatus":"","prodNo":"FUK05151229A","allot":19,"promoText":null,"prodUrl":null}]
+[
+  {
+    "date": "2015-12-26",
+    "price": 31700,
+    "fullStatus": "",
+    "prodNo": "FUK05151226A",
+    "allot": 15,
+    "promoText": null,
+    "prodUrl": null
+  },
+  {
+    "date": "2015-12-29",
+    "price": 35700,
+    "fullStatus": "",
+    "prodNo": "FUK05151229A",
+    "allot": 19,
+    "promoText": null,
+    "prodUrl": null
+  }
+]

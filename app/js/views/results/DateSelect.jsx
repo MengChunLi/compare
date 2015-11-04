@@ -10,11 +10,19 @@ var DateOptionSingle = require('./DateOptionSingle.jsx');
 /**
  *
  */
+var propTypes = {
+    index: React.PropTypes.int,
+    pfProdNo: React.PropTypes.string,
+    pfGProdNo: React.PropTypes.string,
+    saleDt: React.PropTypes.string,
+    fullStatus: React.PropTypes.string
+};
 
 var comp = React.createClass({
   getInitialState: function() {
     return {
-      options: [{'value': 0 ,'date' : this.props.saleDt, 'fullStatus': this.props.fullStatus}]
+      pfProdNo: this.props.pfProdNo,
+      options: [{'value': this.props.pfProdNo ,'date' : this.props.saleDt, 'fullStatus': this.props.fullStatus}]
     };
   },
 
@@ -29,11 +37,12 @@ var comp = React.createClass({
            var keyID = shortId.generate();
            // 每個選項必須有個唯一的value
            var _data = data.map(function(item, index) {
-              item.value = index;
+              item.value = item.prodNo;
              return item;
            });
-           console.log(_data);
+           //console.log(_data);
            this.setState({
+            pfProdNo: this.props.pfProdNo,
             options: _data
           });
         }.bind(this),
@@ -44,16 +53,14 @@ var comp = React.createClass({
   },
 
   render: function() {
-   
-    
 
     return (
       
-      <Select 
+      <Select onChange={this.handleChange}
               onOptionLabelClick={this.onLabelClick}
-              placeholder="請選擇出發日期"
-              value="0"
               optionComponent={DateOption}
+              value={this.state.pfProdNo}
+              placeholder="請選擇出發日期"
               singleValueComponent={DateOptionSingle}
               options={this.state.options}
               searchable={false} />
@@ -62,7 +69,8 @@ var comp = React.createClass({
   },
 
   handleChange: function(val){
-    console.log("Selected: " + val);
+    //console.log("child Selected: ", val);
+    this.props.onChange(val, this.props.index);
   },
 
   noop: function(){}
