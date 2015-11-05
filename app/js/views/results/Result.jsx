@@ -10,6 +10,8 @@ var actions = require('../../actions/ResultsAction');
 
 var _prods = [];
 var _isSuccess = [];
+var init = true;
+
 var comp = React.createClass({
 
     getInitialState: function() {console.log('getInitialState');
@@ -19,9 +21,14 @@ var comp = React.createClass({
     },
 
     componentWillMount: function() {
-      this._onChange();
-      console.log('componentWillMount');
+      if(init){
+        this._init();
+        init = false;
+      }
+      
+      //console.log('componentWillMount');
       ResultsStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
+
     },
     //
     // unmount
@@ -34,7 +41,7 @@ var comp = React.createClass({
     },
 
     render: function() {
-      console.log('this.state.prods', this.state.prods);
+      //console.log('this.state', this.state);
       var props = {
         prods: this.state.prods,
         onChange: this.handleFieldChange
@@ -52,39 +59,54 @@ var comp = React.createClass({
 
     handleFieldChange: function(val, index){
       var otherDateApi = '/api/' + val;
-      var newVal = {'prodNo': val, 'url': otherDateApi}
-      actions.updateResult( newVal, index );
+      var selectedProd = {'index': index, 'prodNo': val, 'url': otherDateApi};
+      //var newState = $.extend( {}, this.state, {'selectedProd': selectedProd} );
+      // this.setState(newState);
+      actions.updateResult( selectedProd );
       //this.setState({prod : newProd, prods: []});
-      //console.log("Parent Selected: " , newVal, index);
+      //console.log('newState', newState);
+      //console.log("Parent Selected: " , this.state);
     },
 
-    _onChange: function(){
-      console.log('_onChange');
-      _prods = [];
-      this.state.prod.forEach(function(entry) {
-        //console.log('entry: ',entry);
-        this.getProdsData(entry);
+    _init: function(){
+      //console.log('_init');
+      this.state.prod.forEach(function(entry, i) {
+        this.getProdsData(entry, i);
       }, this);
     },
 
-    getProdsData: function(entry) {
+    _onChange: function(){
+      var truth = this.getTruth();
+      // 重要：從 root view 觸發所有 sub-view 重繪
+      this.setState( this.getTruth() );
+      //console.log('_onChange', truth);
+      this.getProdsData(truth.selectedProd.url, truth.selectedProd.index);
+    },
+
+    getProdsData: function(entry, index) {
+      if(entry.url){
+        var url = entry.url;
+      }else{
+        var url = entry;
+      }
       $.ajax({
           type: 'GET',
-          url: entry.url,
+          url: url,
           dataType: 'json',
           success: function(data) {
             data.isSuccess = true;
-            _prods.push(data);
+            _prods[index] = data;
+            //console.log('success', data);
           }.bind(this),
           error: function(e) {
-            _prods.push({isSuccess: false});
+            _prods[index] = {isSuccess: false};
             console.log('error', e);
           }.bind(this),
           complete: function(e) {
-            //console.log(_prods);
-            this.setState({
-              prods: _prods
-            });
+            
+            var newState = $.extend( {}, this.state, {'prods': _prods} );
+            //console.log('complete', newState);
+            this.setState(newState);
           }.bind(this)
         });
     },

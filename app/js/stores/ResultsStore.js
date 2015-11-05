@@ -23,6 +23,14 @@ var Promise = require('es6-promise').Promise;
 // 由於將來會返還 TodoStore 出去，因此下面寫的會全變為 public methods
 var Store = new EventEmitter();
 
+var selectedProd = null;
+/**
+ * { 
+    "index": index,
+    "prodNo" : item,
+    "url" : BASEURL + item
+    };
+ */
 var prod = JSON.parse(document.getElementById('prodObj').getAttribute('data-prod'));
 var prods = [];
 
@@ -109,8 +117,9 @@ $.extend( Store, {
      */
     getAll: function(){
       return {
-          prod: prod,
-          prods: prods
+        selectedProd: selectedProd,
+        prod: prod,
+        prods: prods
       }
     },
 
@@ -222,9 +231,10 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
          */    
         case AppConstants.PROD_UPDATE:
 
-            prod[action.index] = action.newVal;
+            prod[action.selectedProd.index] = action.selectedProd;
+            selectedProd = action.selectedProd;
 
-            console.log( 'Store 更新: ', prod );
+            console.log( 'Store 更新: ', prod,  selectedProd);
 
             Store.emit( AppConstants.CHANGE_EVENT );
 

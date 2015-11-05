@@ -35,12 +35,13 @@ exports.apiOtherDate = function(req, res) {
  * GET results page.
  */
 exports.results = function (req, res, next) {
-    var prodObj = req.query.prod.map(function(item) {
+    var prodObj = req.query.prod.map(function(item, index) {
         //var _item = [];
         //console.log(item);
          //_item = item.split('_');
         return { 
-                "prodno" : item,
+                "index": index,
+                "prodNo" : item,
                 "url" : BASEURL + item
                };
     });

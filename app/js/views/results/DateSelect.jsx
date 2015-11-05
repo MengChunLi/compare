@@ -10,6 +10,7 @@ var DateOptionSingle = require('./DateOptionSingle.jsx');
 /**
  *
  */
+
 var propTypes = {
     index: React.PropTypes.int,
     pfProdNo: React.PropTypes.string,
@@ -27,9 +28,9 @@ var comp = React.createClass({
   },
 
   componentWillMount: function() {
-    var pfGProdNo = this.props.pfGProdNo;
-    var ajaxURL = "/api/otherDate/" + pfGProdNo;
-    $.ajax({
+      var pfGProdNo = this.props.pfGProdNo;
+      var ajaxURL = "/api/otherDate/" + pfGProdNo;
+      $.ajax({
         type: 'GET',
         url: ajaxURL,
         dataType: 'json', //specify jsonp
@@ -41,13 +42,15 @@ var comp = React.createClass({
              return item;
            });
            //console.log(_data);
-           this.setState({
-            pfProdNo: this.props.pfProdNo,
-            options: _data
-          });
+           var newState = $.extend( {}, this.state, {'options': _data} );
+           this.setState(newState);
         }.bind(this),
         error: function(e) {
           console.log('error', e);
+        }.bind(this),
+        complete: function(e) {
+          var newState = $.extend( {}, this.state, {'isComplete': true} );
+          this.setState(newState);
         }.bind(this)
       });
   },

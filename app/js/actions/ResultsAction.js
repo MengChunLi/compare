@@ -69,12 +69,11 @@ var ResultsAction = {
     /**
      * 
      */
-    updateResult: function( newVal, index ) {
+    updateResult: function( selectedProd ) {
 
         AppDispatcher.handleViewAction({
             actionType: AppConstants.PROD_UPDATE,
-            index: index,
-            newVal: newVal
+            selectedProd: selectedProd
         });
 
     },
