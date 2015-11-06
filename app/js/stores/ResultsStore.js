@@ -33,7 +33,8 @@ var selectedProd = null;
  */
 var prod = JSON.parse(document.getElementById('prodObj').getAttribute('data-prod'));
 var prods = [];
-
+var test = "TEST123";
+var test2 = "TEST567";
 // function imgLoad(entry) {
 //   // Create new promise with the Promise() constructor;
 //   // This has as its argument a function
@@ -117,6 +118,8 @@ $.extend( Store, {
      */
     getAll: function(){
       return {
+        // test: test,
+        // test2: test2,
         selectedProd: selectedProd,
         prod: prod,
         prods: prods
@@ -233,8 +236,21 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
 
             prod[action.selectedProd.index] = action.selectedProd;
             selectedProd = action.selectedProd;
-
+            //test = "TEST456";
+            //test2 = "TEST910";
             console.log( 'Store 更新: ', prod,  selectedProd);
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            //persist();
+                
+            break;
+
+        case AppConstants.TEST_UPDATE:
+
+            test = "TEST456";
+            test2 = "TEST910";
+            console.log( 'Store 更新: ');
 
             Store.emit( AppConstants.CHANGE_EVENT );
 

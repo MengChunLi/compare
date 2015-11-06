@@ -78,6 +78,14 @@ var ResultsAction = {
 
     },
 
+    updateTEST: function(  ) {
+
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.TEST_UPDATE
+        });
+
+    },
+
     /**
      * 
      */

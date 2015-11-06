@@ -9,7 +9,7 @@ var shortId = require('shortid');
 var comp = React.createClass({
   getInitialState: function() {
     return {
-      isDone: false,
+      isDone: false
     };
   },
   /**
