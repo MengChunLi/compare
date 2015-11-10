@@ -7,7 +7,9 @@
 //
 // import
 var React =  require('react');
+var classNames = require('classnames');
 var ProdList = require('./ProdList.jsx');
+var AlertBox = require('./AlertBox.jsx');
 var CompareBox = require('./CompareBox.jsx');
 var CompareStore = require('../stores/CompareStore');
 var AppConstants = require('../constants/AppConstants');
@@ -141,16 +143,16 @@ var comp = React.createClass({
      *
      */
     render: function() {
-
-            return (
-              <div className="wrap">
-                <div className="container">
-                  <ProdList truth={this.state} />
-                   <div className="compare-alert-msg"></div>
-                  <CompareBox truth={this.state}/>
-                </div>
-              </div>
-            )
+      console.log(this.state.showAlert);
+      return (
+        <div className="wrap">
+          <div className="container">
+            <ProdList truth={this.state} />
+            <AlertBox showAlert={this.state.showAlert} delay={2000}>商品比較最多可選3筆</AlertBox>
+            <CompareBox truth={this.state}/>
+          </div>
+        </div>
+      )
     },
 
     //========================================================================

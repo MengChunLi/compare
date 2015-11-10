@@ -38,6 +38,8 @@ var prodsApi = prodsID.map(function(item) {
 // // 目前選取的 todo 項目
 var selectedItem = null;
 
+var showAlert = false;
+
 // app 第一次啟動時，存入一包 mock data 到 localStorage 供測試
 var db = window.localStorage;
 if( db.hasOwnProperty('compareDB') == false ){
@@ -67,7 +69,8 @@ $.extend( Store, {
        // selectedItem = window.addEventListener('storage', this.handleStorage );
         return {
             prodsApi: prodsApi,
-            selectedItem: selectedItem
+            selectedItem: selectedItem,
+            showAlert: showAlert
         }
     },
 
@@ -106,7 +109,7 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             })
             
             selectedItem.push( action.item );
-
+            
             console.log( 'Store 新增: ', selectedItem );
 
             // 將新增的項目設為 selected，將來在 ui 裏會高亮與自動捲動
@@ -169,6 +172,36 @@ Store.dispatchToken = AppDispatcher.register( function eventHandlers(evt){
             Store.emit( AppConstants.CHANGE_EVENT );
 
             persist();
+                
+            break;
+
+        /**
+         * 
+         */    
+        case AppConstants.SHOW_ALERT:
+
+            console.log( 'SHOW_ALERT: ');
+
+            showAlert = true;
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            //persist();
+                
+            break;
+
+        /**
+         * 
+         */    
+        case AppConstants.HIDE_ALERT:
+
+            console.log( 'HIDE_ALERT: ');
+
+            showAlert = false;
+
+            Store.emit( AppConstants.CHANGE_EVENT );
+
+            //persist();
                 
             break;
 

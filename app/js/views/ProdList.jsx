@@ -55,7 +55,7 @@ var comp = React.createClass({
 
         //console.log('isSelected2: ',isSelected);
         return <ProdListItem
-
+                selectedItem ={this.props.truth.selectedItem}
                 index={index}
                 prod={item}
                 selected = {isSelected}

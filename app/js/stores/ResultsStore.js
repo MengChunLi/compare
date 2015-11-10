@@ -33,6 +33,7 @@ var selectedProd = null;
  */
 var prod = JSON.parse(document.getElementById('prodObj').getAttribute('data-prod'));
 var prods = [];
+
 var test = "TEST123";
 var test2 = "TEST567";
 // function imgLoad(entry) {

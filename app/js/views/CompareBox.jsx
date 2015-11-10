@@ -1,10 +1,15 @@
 var React =  require('react');
+var ReactDOM =  require('react-dom');
 var shortId = require('shortid');
+var classNames = require('classnames');
 var actions = require('../actions/CompareAction');
 var comp = React.createClass({
+    componentDidMount: function() {
+        
+    },
     render: function() {
-    console.log(this.props.truth.selectedItem);
-    var miniImg = this.props.truth.selectedItem
+        //console.log(this.props.truth.selectedItem.length);
+        var miniImg = this.props.truth.selectedItem
         .map(function(item) {
             var _key = shortId.generate();
             return  <div className="mini-img-box" key={_key}>
@@ -13,19 +18,33 @@ var comp = React.createClass({
                             <img src={item.vImgUrl} />
                         </a>
                     </div>
-        }, this)
+        }, this);
+
+        var compareBox = classNames({
+            'compare-temp-box' : true,
+            'active': this.props.truth.selectedItem.length
+        });
         return (
-            <div className="compare-temp-box">
+            <div className={compareBox} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
                 <div className="title">
-                    商品比較現有 (<span className="compare-prod-count">{this.props.truth.selectedItem.length}</span>) 筆
+                    商品比較 現有 (<span className="compare-prod-count">{this.props.truth.selectedItem.length}</span>) 筆
                     <button type="button" className="close closeCompareBox" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
                 </div>
+                <button type="button" className="close clean-all clear-compare-box" onClick={this.handleClear}><span>清除所有項目</span></button>
                 <div className="mini-images">{miniImg}</div>
                 <a href="#" className="btn-green btn-compare compareLink" target="_blank" onClick={this.handleSubmit}>立即比較</a>
-                <button type="button" className="close clean-all clear-compare-box" onClick={this.handleClear}><span>清除所有項目</span></button>
             </div>
         );
+    },
+
+    handleMouseEnter: function(e) {
+        e.target.classList.add("hover");
+    },
+
+    handleMouseLeave: function(e) {
+        //console.log(e.target);
+        e.target.classList.remove("hover");
     },
 
     getQStr: function(arr) {
@@ -57,7 +76,6 @@ var comp = React.createClass({
     },
 
     handleRemove: function(event) {
-console.log('12');
       console.log(this.props.pfProdNo);
 
     },

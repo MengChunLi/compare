@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Sample application for meetup",
   "main": "js/app.js",
-  "dependencies": { 
+  "dependencies": {
+    "classnames": "^2.2.0",
     "ejs": "*",
     "es6-promise": "~0.1.1",
-    "classnames": "^2.2.0",
     "express": "4.x",
     "flux": "^2.0.1",
     "react": "^0.14.1",

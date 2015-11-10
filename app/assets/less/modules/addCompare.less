@@ -1,7 +1,5 @@
 .add-compare-btn{
-	position: absolute;
-	left: 20px;
-	bottom: 20px;
+	position: absolute;	
 	cursor: pointer;
 	label{
 		margin-bottom: 0;
@@ -36,7 +34,7 @@
 	}
 }
 .compare-alert-msg{
-	display: none;
+	.opacity(0);
 	z-index: 3;
 	position: fixed;
 	bottom: 45px;
@@ -48,19 +46,19 @@
 	font-size: 16px;
 	text-align: center;
 	padding: 10px 0;
-	.transition(opacity 0.2s);
+	.transition(opacity 0.5s ease-in-out);
 	&.active{
-		display: block;
+		.opacity(1);
 	}
 	&.high{
 		bottom: 180px;
 	}
 }
 .compare-temp-box{
-	//display: none;
+	display: none;
 	z-index: 2;
 	position: fixed;
-	bottom: 15px;
+	bottom: -115px;
 	right: 15px;
 	width: 210px;
 	background-color: #6EBBDC;
@@ -84,7 +82,7 @@
 	}
 	.clean-all{
 		text-decoration: underline;
-	    margin-top: 10px;
+	    margin: 5px 0;
 	    width: 100%;
 	    font-size: 14px;
 	    text-align: center;
@@ -120,8 +118,6 @@
 				}
 			}
 			.mini-img{
-				display: block;
-				cursor: pointer;
 				&.default{
 					cursor: default;
 				}
@@ -141,7 +137,7 @@
 	.btn-compare{
 		display: block;
 		width: 100px;
-		margin: auto;
+		margin: 0 auto 3px auto;
 		text-align: center;
 		font-size: 18px;
 		padding: 3px 0;

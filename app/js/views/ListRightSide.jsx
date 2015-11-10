@@ -19,7 +19,7 @@ var comp = React.createClass({
                     <span className="list-arrow"></span>
                 </div>
             </div>
-            <AddCompare prod={this.props.prod} selected = {this.props.selected} />
+            <AddCompare prod={this.props.prod} selected = {this.props.selected} selectedItem ={this.props.selectedItem}/>
         </div>
       );
     }

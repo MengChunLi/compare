@@ -21,6 +21,10 @@ var comp = React.createClass({
   //   this.setState({defaultChecked: this.props.selected});
   // },
 
+  componentDidMount: function() {
+    
+  },
+
   render: function() {
     var labelId = getLabelId();
     //console.log('this.props.selected: ',this.props.selected);
@@ -41,10 +45,15 @@ var comp = React.createClass({
 
     // 產生UID給array prop key 使用
     //item.uid = shortId.generate();
-    //console.log(this.state.defaultChecked);
+    //console.log(this.props.selectedItem.length);
     if(event.target.checked){
-      //item.selectedItem = item;
-      actions.createItem( item );
+      //最多加入3個商品
+      if(this.props.selectedItem.length < 3){
+        actions.createItem( item );
+      }else{
+        //  顯示警告訊息
+        actions.showAlert();
+      }
     }else{
       //console.log('removeItem');
       //item.selectedItem = false;

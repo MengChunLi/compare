@@ -25,7 +25,7 @@ var comp = React.createClass({
       <div className="list-box">
 
            <ListLeftSide index={this.props.index} prod={this.props.prod} />
-           <ListRightSide prod={this.props.prod} selected = {this.props.selected} />
+           <ListRightSide prod={this.props.prod} selected = {this.props.selected} selectedItem ={this.props.selectedItem}/>
 
       </div>
     );

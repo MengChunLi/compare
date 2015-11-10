@@ -41,6 +41,10 @@ module.exports = keyMirror({
 
     PROD_UPDATE: null,
 
+    SHOW_ALERT: null,
+
+    HIDE_ALERT: null,
+
   	noop: null
 });
 

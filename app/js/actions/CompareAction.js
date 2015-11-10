@@ -91,6 +91,21 @@ var CompareAction = {
 
     },
 
+    showAlert: function() {
+        console.log('showAlert');
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.SHOW_ALERT
+        });
+
+    },
+
+    hideAlert: function() {
+        console.log('showAlert');
+        AppDispatcher.handleViewAction({
+            actionType: AppConstants.HIDE_ALERT
+        });
+
+    },
     /**
      * 
      */
